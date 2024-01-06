@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <button onclick="openDb()">打开数据库</button>
+    <button onclick="createTable()">新建数据表</button>
+    <button onclick="insertOneData()">插入一条数据</button>
+    <button onclick="insertMultiData()">插入多条数据</button>
+    <button onclick="queryData()">查询数据</button>
+    <button onclick="updateData()">更新数据</button>
+    <button onclick="deleteData()">删除数据</button>
+  </div>
+  <div style="margin-top: 10px;" id="table-container"></div>
+  <script>
+    let db; 
+    // 打开数据库
+    function openDb() {
+      // 4个参数 数据库名称，版本号，数据库描述，数据库大小
+      db = openDatabase("db_name", "1.0", "db_descript", 2 * 1024 * 1024)
+    }
+    // 创建数据库
+    function createTable() {
+      db.transaction(function(tx) {
+        tx.executeSql('CREATE TABLE IF NOT EXISTS html5_table (id INTEGER PRIMARY KEY, title TEXT, author TEXT, createdAt INTEGER)');
+      });
+    }
+    // 插入一条数据
+    function insertOneData() {
+      db.transaction(function(tx) {
+        tx.executeSql('INSERT INTO html5_table (title, author, createdAt) VALUES (?, ?, ?)', ['HTML5 简介', '前端周公子', (new Date('2023-05-01')).valueOf()]
+        , function(tx, results) {
+          console.log('插入成功，插入的行 ID 为 ' + results.insertId);
+        }, function(tx, error) {
+          console.log('插入失败: ' + error.message);
+        });
+      });
+    }
+    // 插入多行数据
+    function insertMultiData() {
+      db.transaction(function(tx) {
+        tx.executeSql('INSERT INTO html5_table (title, author, createdAt) VALUES (?, ?, ?)', ['HTML5 语义化标签', '前端周公子', (new Date('2023-05-02')).valueOf()]);
+        tx.executeSql('INSERT INTO html5_table (title, author, createdAt) VALUES (?, ?, ?)', ['HTML5 MathML', '前端周公子', (new Date('2023-05-03')).valueOf()]);
+        tx.executeSql('INSERT INTO html5_table (title, author, createdAt) VALUES (?, ?, ?)', ['HTML5 Canvas', '前端周公子', (new Date('2023-05-04')).valueOf()]);
+      }, function(tx, error) {
+        console.log('插入失败: ' + error.message);
+      }, function() {
+        console.log('插入成功');
+      });
+    }
+    // 查询数据
+    function queryData() {
+      db.transaction(function(tx) {
+        tx.executeSql('SELECT * FROM html5_table', [], function(tx, results) {
+          const len = results.rows.length;
+          console.log(results)
+          for (let i = 0; i < len; i++) {
+            // console.log(results.rows[i]);
+            console.log(results.rows.item(i));
+          }
+        }, function(tx, error) {
+          console.log('查询失败: ' + error.message);
+        });
+      })
+    }
+    // 更新数据
+    function updateData() {
+      db.transaction(function(tx) {
+        tx.executeSql('UPDATE html5_table SET author=? WHERE author=?', ['周公子在掘金', '前端周公子'], function(tx, results) {
+          console.log('更新成功，更新的行数为 ' + results.rowsAffected);
+        }, function(tx, error) {
+          console.log('更新失败: ' + error.message);
+        });
+      });
+    }
+    // 删除数据
+    function deleteData() {
+      db.transaction(function(tx) {
+        tx.executeSql('DELETE FROM html5_table WHERE title=?', ['HTML5 Canvas'], function(tx, results) {
+          console.log('删除成功，删除的行数为 ' + results.rowsAffected);
+        }, function(tx, error) {
+          console.log('删除失败: ' + error.message);
+        });
+      });
+    }
+  </script>
+</body>
+</html>
