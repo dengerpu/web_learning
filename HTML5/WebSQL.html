@@ -53,20 +53,65 @@
       });
     }
     // 查询数据
+    // function queryData() {
+    //   db.transaction(function(tx) {
+    //     tx.executeSql('SELECT * FROM html5_table', [], function(tx, results) {
+    //       const len = results.rows.length;
+    //       console.log(results)
+    //       for (let i = 0; i < len; i++) {
+    //         // console.log(results.rows[i]);
+    //         console.log(results.rows.item(i));
+    //       }
+    //     }, function(tx, error) {
+    //       console.log('查询失败: ' + error.message);
+    //     });
+    //   })
+    // }
+    // 查询数据
     function queryData() {
+      if (!db) {
+        alert('请先打开数据库');
+        return;
+      }
+      // 执行一条 SQL 查询语句
       db.transaction(function(tx) {
         tx.executeSql('SELECT * FROM html5_table', [], function(tx, results) {
           const len = results.rows.length;
-          console.log(results)
+          if (!len) {
+            alert('查询成功，但是没有数据');
+            return;
+          }
+          // 插入前先清空
+          document.getElementById('table-container').innerHTML = '';
           for (let i = 0; i < len; i++) {
-            // console.log(results.rows[i]);
-            console.log(results.rows.item(i));
+            // 向 table-container 里插入一个表格
+            const table = document.createElement('table');
+            const tr = document.createElement('tr');
+            const td1 = document.createElement('td');
+            const td2 = document.createElement('td');
+            const td3 = document.createElement('td');
+            const td4 = document.createElement('td');
+            const td5 = document.createElement('td');
+            td1.innerText = results.rows.item(i).id;
+            td2.innerText = results.rows.item(i).title;
+            td3.innerText = results.rows.item(i).author;
+            td4.innerText = results.rows.item(i).createdAt;
+            td5.innerHTML = `<a style="cursor:pointer; color: blue" onclick="deleteData(${results.rows.item(i).id})">删除</a>`;
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tr.appendChild(td3);
+            tr.appendChild(td4);
+            tr.appendChild(td5);
+            table.appendChild(tr);
+            table.setAttribute('border', '1');
+            document.getElementById('table-container').appendChild(table);
           }
         }, function(tx, error) {
           console.log('查询失败: ' + error.message);
         });
-      })
+      });
     }
+
     // 更新数据
     function updateData() {
       db.transaction(function(tx) {
