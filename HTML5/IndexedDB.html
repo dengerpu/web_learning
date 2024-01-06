@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IndexedDB</title>
+</head>
+<body>
+  <div>Result: <p id="msg"></p></div>
+  <button onclick="insertOneData()">插入一条数据</button>
+  <button onclick="insertMultiData()">批量插入数据</button>
+  <button onclick="queryDataByPrimaryKey()">根据主键查询数据</button>
+  <button onclick="queryAllData()">查询所有数据</button>
+  <button onclick="queryAllDataByCursor()">指针遍历数据</button>
+  <button onclick="updateData()">更新数据</button>
+  <button onclick="deleteDataById()">删除数据</button>
+  <button onclick="createIndex()">创建索引，并使用索引</button>
+  <div id="table-container"></div>
+  <script>
+    const dbName = "Indexed_learn";
+    const dbVersion = 1.0;
+
+    let db;
+    
+    // 返回的结果是数据库 IDBDatabase对象
+    const request = indexedDB.open(dbName, dbVersion);
+
+    request.onerror = function(event) {
+      console.log("无法打开数据库");
+    }
+
+    request.onupgradeneeded = function(event) {
+      db = event.target.result;
+      // 在这里创建和修改数据库对象
+      const objectStore = db.createObjectStore("html5_courses", {keyPath: "id"});
+      // createIndex() 的三个参数分别为索引名称、索引所在的属性、配置对象(说明该属性是否包含重复的值)
+      objectStore.createIndex("title", "title", { unique: true });
+    }
+
+    request.onsuccess = function(event) {
+      db = event.target.result;
+      console.log(`数据库 ${db.name} 已打开`);
+    }
+
+    // 插入一条数据
+    function insertOneData() {
+      const transaction = db.transaction(['html5_courses'], 'readwrite')
+      .objectStore('html5_courses')
+      .add({ id: 1, title: 'HTML5 简介', author: '前端周公子', createdAt: (new Date('2023-05-01')).valueOf() });
+
+      transaction.onsuccess = function (event) {
+        console.log('数据写入成功');
+      };
+
+      transaction.onerror = function (event) {
+        console.log('数据写入失败');
+      }
+    }
+
+    // 插入多条数据
+    function insertMultiData() {
+      const data = [
+        { id: 2, title: "HTML5 语义化标签", author: "前端周公子", createdAt: (new Date('2023-05-02')).valueOf() },
+        { id: 3, title: "HTML5 MathML", author: "前端周公子", createdAt: (new Date('2023-05-03')).valueOf() },
+        { id: 4, title: "HTML5 Canvas", author: "前端周公子", createdAt: (new Date('2023-05-04')).valueOf() },
+      ];
+      const transaction = db.transaction(["html5_courses"], "readwrite");
+      const objectStore = transaction.objectStore("html5_courses");
+      data.forEach(function(item) {
+      const request = objectStore.add(item);
+        request.onsuccess = function(event) {
+          console.log("数据已添加");
+        };
+      });
+
+      transaction.oncomplete = function(event) {
+        console.log("批量添加数据已完成");
+        db.close();
+      };
+    }
+
+    // 查询一条数据
+    function queryDataByPrimaryKey() {
+      // 读取一条数据，通过主键
+      const transaction = db.transaction(["html5_courses"], "readonly");
+      const objectStore = transaction.objectStore("html5_courses");
+      // 获取 id = 1 的数据
+      const req = objectStore.get(1);
+      req.onerror = function(event) {
+        console.log('事务失败');
+      };
+
+      req.onsuccess = function(event) {
+          if (req.result) {
+            console.log('Title: ' + req.result.title);
+            console.log('Author: ' + req.result.author);
+            console.log('CreatedAt: ' + new Date(req.result.createdAt));
+          } else {
+            console.log('未获得数据记录');
+          }
+      };
+    }
+
+    // 查询所有数据
+    function queryAllData() {
+      const transaction = db.transaction(["html5_courses"], "readonly");
+      const objectStore = transaction.objectStore("html5_courses");
+      // 使用 getAll() 方法读取对象存储空间中的所有数据
+      objectStore.getAll().onsuccess = function(event) {
+        const data = event.target.result;
+        console.log(data);
+      };
+    }
+
+    // 指针遍历数据
+    function queryAllDataByCursor() {
+      // 遍历数据
+      const transaction = db.transaction(["html5_courses"], "readonly");
+      const objectStore = transaction.objectStore("html5_courses");
+
+      objectStore.openCursor().onsuccess = function(event) {
+        console.log("开始遍历数据");
+        const cursor = event.target.result;
+        if (cursor) {
+          console.log("Title: " + cursor.value.title);
+          console.log("Author: " + cursor.value.author);
+          console.log("CreatedAt: " + new Date(cursor.value.createdAt));
+          cursor.continue();
+        } else {
+          console.log("没有更多数据了！");
+        }
+      };
+    }
+
+    // 更新数据
+    function updateData() {
+      // 更新数据
+      const transaction = db.transaction(["html5_courses"], "readwrite");
+      const objectStore = transaction.objectStore("html5_courses");
+
+      const req = objectStore.put({ id: 1, title: 'HTML5 简介', author: '周公子在掘金', createdAt: (new Date('2023-05-01')).valueOf() });
+
+      req.onsuccess = function (event) {
+        console.log('数据更新成功');
+      };
+
+      req.onerror = function (event) {
+        console.log('数据更新失败');
+      }
+    }
+
+    // 删除数据
+    function deleteDataById() {
+      // 删除数据
+      const transaction = db.transaction(["html5_courses"], "readwrite");
+      const objectStore = transaction.objectStore("html5_courses");
+
+      const req = objectStore.delete(1);
+
+      req.onsuccess = function (event) {
+        console.log('数据删除成功');
+      };
+
+      req.onerror = function (event) {
+        console.log('数据删除失败');
+      }
+    }
+
+    // 创建索引并使用索引查询
+    function createIndex() {
+      // 创建索引 （前面创建数据库的时候已经创建了）
+      // const objectStore = db.createObjectStore("html5_courses", { keyPath: "id" });
+      // objectStore.createIndex("title", "title", { unique: true });
+
+      // 根据索引查询
+      const transaction = db.transaction(["html5_courses"], "readonly");
+      const index =  transaction.objectStore("html5_courses").index("title");
+
+      const range = IDBKeyRange.only("HTML5 Canvas");
+      const request = index.openCursor(range);
+
+      request.onsuccess = function(event) {
+        const cursor = event.target.result;
+        if (cursor) {
+          console.log("ID: " + cursor.value.id + ", Title: " + cursor.value.title + ", Author: " + cursor.value.author);
+          cursor.continue();
+        }
+      };
+
+    }
+  </script>
+</body>
+</html>
