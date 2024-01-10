@@ -23,6 +23,46 @@
     #app3 {
       box-shadow: inset 0px 0px 0px 10px black;
     }
+    .button {
+      width: 100px;
+      height: 40px;
+      text-align: center;
+      line-height: 40px;
+      border-radius: 10em;
+      font-weight: 400;
+      color: #ffffff;
+      background-color: #5EA9FF;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+    .card {
+      width:400px;
+      height: 280px;
+      margin: 0 auto;
+      border-radius: 3px 3px 0 0;
+      box-shadow: -5.665px 9.429px 35px 0px rgba(0, 0, 0, 0.2);
+    }
+    .card_header {
+      height: 10%;
+      display: flex;
+      align-items: center;
+      border-radius: inherit;
+      background-color: #F7F7F7;
+    }
+    .card_header_icon {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      /* box-shadow: 0 0 0 2px #f44, 1.5em 0 0 2px #9b3, 3em 0 0 2px #fb5; */
+      box-shadow: 0.7em 0 0 2px #f44, 2em 0 0 2px #9b3, 3.3em 0 0 2px #fb5;
+    }
+
+    .triangle {
+      width: 0;
+      height: 0;
+      border-width:40px;
+      border-style: solid;
+      border-color: transparent transparent #f44 transparent;
+    }
   </style>
 </head>
 <body>
@@ -30,5 +70,13 @@
   <div class="box" id="app1"></div>
   <div class="box" id="app2"></div>
   <div class="box" id="app3"></div>
+  <div class="button">我是按钮</div>
+  <div class="card">
+    <div class="card_header">
+      <div class="card_header_icon"></div>
+    </div>
+  </div>
+
+  <div class="triangle"></div>
 </body>
 </html>
