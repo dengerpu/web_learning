@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #app {
+      width: 100px;
+      height: 100px;
+      background-color: purple;
+      /* animation-name: jianjin;
+      animation-duration: 5s; */
+      animation: jianjin 5s linear 1s 2;
+    }
+    @keyframes jianjin {
+      0% {
+        opacity: 0;
+      }
+      50% {
+        background-color: red;
+        opacity: 0.5;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+
+  </div>
+</body>
+</html>
