@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+    }
+    #app {
+      background-color: purple;
+      transform: translate(50px, 10px) scale(0.8) rotate(45deg);
+    }
+    #app1 {
+      background-color: red;
+      /*元素沿着X轴平移50像素，沿着Y轴平移100像素，沿着Z轴平移0像素（即不变）。*/
+      transform: translate3d(50px, 10px, 20px);
+    }
+    #app2 {
+      background-color: bisque;
+      transform: perspective(1000px);
+    }
+    #app3 {
+      background-color: aquamarine;
+      /* 沿着 X 轴和 Y 轴进行缩放 2 倍和 1.5 倍 */
+      transform: scale3d(2,1.5,1);
+    }
+  </style>
+</head>
+<body>
+  <div class="box" id="app"></div>
+  <div class="box" id="app1"></div>
+  <div class="box" id="app2"></div>
+  <div class="box" id="app3"></div>
+</body>
+</html>
