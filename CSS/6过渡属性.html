@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .transition-img {
+      width: 540px;
+      height: 300px;
+    }
+    .transition-img img {
+      transition-property: all;
+      transition-duration: 1s;
+      transition-delay: 0s, 1s, 0s;
+      width: 450px;
+      height: 236px;
+    }
+    .transition-img > img:hover {
+      width: 540px;
+      height: 283px;
+      box-shadow: 5px 3px 5px #03040a;
+    }
+
+    /*动态下划线*/
+    .transition-text h3{
+      font-weight: 500;
+      display: inline-block;
+      position: relative;
+      line-height: 30px;
+      color: #191c1e;
+    }
+    .transition-text h3:after {
+      bottom: 0;
+      content: "";
+      display: block;
+      height: 2px;
+      left: 50%;
+      position: absolute;
+      background: #65a835;
+      transition: width 0.3s ease 0s, left 0.3s ease 0s;
+      width: 0;
+    }
+    .transition-text h3:hover:after {
+      width: 100%;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="transition-img">
+    <img src="https://img.tuguaishou.com/ips_templ_preview/32/70/10/lg_3021854_1588590648_5eaff83808ead.jpg!w1024_w?auth_key=2279721511-0-0-dbdef676569bc8862b46dc87097d619d" alt="">
+  </div>
+
+  <!-- 动态下划线 -->
+  <div class="transition-text">
+    <h3>动态下划线的标题</h3>
+  </div>
+</body>
+</html>
