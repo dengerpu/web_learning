@@ -27,6 +27,35 @@
       /* 沿着 X 轴和 Y 轴进行缩放 2 倍和 1.5 倍 */
       transform: scale3d(2,1.5,1);
     }
+
+    .text {
+      font-size: 12px;
+      transform: scale(0.67);
+    }
+
+    .element {
+      position: relative;
+    }
+    .element::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      border: 1px solid #000;
+      transform: scale(0.5);
+      transform-origin: left top;
+    }
+
+    .trapezoid {
+      margin-top: 20PX;
+      margin-left: 20PX;
+      width: 200px;
+      height: 100px;
+      background-color: #f00;
+      transform: skewX(-20deg);
+    }
   </style>
 </head>
 <body>
@@ -34,5 +63,9 @@
   <div class="box" id="app1"></div>
   <div class="box" id="app2"></div>
   <div class="box" id="app3"></div>
+  <div style="margin-top: 200px;"></div>
+  <span class="text">我是一个8px的字体</span>
+  <div class="element"></div>
+  <div class="trapezoid "></div>
 </body>
 </html>
