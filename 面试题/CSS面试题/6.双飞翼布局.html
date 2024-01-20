@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>双飞翼布局</title>
+    <style type="text/css">
+        body {
+            min-width: 550px;
+        }
+        .col {
+            float: left;
+        }
+
+        #main {
+            width: 100%;
+            height: 200px;
+            background-color: #ccc;
+        }
+        #main-wrap {
+            margin: 0 150px 0 200px; /*留出左右位置的间隙*/
+        }
+
+        #left {
+            width: 200px;
+            height: 200px;
+            background-color: #0000FF;
+            margin-left: -100%; /*左侧元素，移动父元素位置的100%*/
+        }
+        #right {
+            width: 150px;
+            height: 200px;
+            background-color: #FF0000;
+            margin-left: -150px;
+        }
+    </style>
+</head>
+<body>
+    <div id="main" class="col">
+        <div id="main-wrap">
+            this is main
+        </div>
+    </div>
+    <div id="left" class="col">
+        this is left
+    </div>
+    <div id="right" class="col">
+        this is right
+    </div>
+</body>
+</html>
