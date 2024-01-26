@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    #resizableDiv {
+      width: 200px;
+      height: 200px;
+      border: 1px solid #ccc;
+      resize: horizontal; /* 使得内容溢出时出现滚动条 */
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+
+<div id="resizableDiv" onmousedown="startResize(event)"></div>
+
+<script>
+  function startResize(e) {
+    e.preventDefault();
+
+    // 获取原始div的宽度和高度
+    const originalWidth = document.getElementById('resizableDiv').offsetWidth;
+    const originalHeight = document.getElementById('resizableDiv').offsetHeight;
+
+    // 获取鼠标当前位置
+    const startX = e.clientX;
+    const startY = e.clientY;
+
+    function resize(e) {
+      // 计算鼠标移动的距离
+      const newWidth = originalWidth + (e.clientX - startX);
+      const newHeight = originalHeight + (e.clientY - startY);
+
+      // 设置div的新宽度和高度
+      document.getElementById('resizableDiv').style.width = newWidth + 'px';
+      document.getElementById('resizableDiv').style.height = newHeight + 'px';
+    }
+
+    function stopResize() {
+      // 移除事件监听器
+      document.removeEventListener('mousemove', resize);
+      document.removeEventListener('mouseup', stopResize);
+    }
+
+    // 添加事件监听器
+    document.addEventListener('mousemove', resize);
+    document.addEventListener('mouseup', stopResize);
+  }
+</script>
+
+</body>
+</html>

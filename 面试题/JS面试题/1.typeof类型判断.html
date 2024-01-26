@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>typeof 类型判断</title>
+</head>
+<body>
+  <script>
+    let a = null;
+    let b;
+    let c = 1;
+    let d = 'hello';
+    let e = true;
+    let f = Symbol('symbol');
+    let g = function() {};
+    let h = [1, 2, 3];
+    let i = {name: 'John'};
+
+
+    console.log(typeof a) //  let a = null; object
+    console.log(typeof b) //  let b; undefined
+    console.log(typeof c) //  let c = 1; number
+    console.log(typeof d) //  let d = 'hello'; string
+    console.log(typeof e) //  let e = true; boolean
+    console.log(typeof f) //  let f = Symbol('symbol'); symbol
+    console.log(typeof g) //  let g = function() {}; function
+    console.log(typeof h) //  let h = [1, 2, 3]; let i = {name: 'John'}; object
+   
+
+  </script>
+</body>
+</html>
