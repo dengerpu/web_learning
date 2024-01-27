@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>手写bind函数</title>
+</head>
+<body>
+  <script>
+    Function.prototype.myBind = function() {
+      // 将参数拆解为数组
+      const args = Array.prototype.slice.call(arguments);
+      // 获取this，即要绑定的函数实例
+      const _this = args.shift();
+      // 获取到原函数的this
+      const self = this;
+      return function() {
+        return self.apply(_this, args);
+      }
+    }
+
+    let obj = {
+      a : 1
+    }
+    function fn() {
+      console.log(this);
+    }
+    fn() // Window
+    let fn1 = fn.myBind(obj);
+    fn1(); // obj
+  </script>
+</body>
+</html>
