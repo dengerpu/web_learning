@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>类和继承</title>
+</head>
+<body>
+  <script>
+    // 父类
+    class People {
+      constructor(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+      eat() {
+        console.log(`${this.name} eat something`)
+      }
+    }
+
+    class Student extends People {
+      constructor(name, age, number) {
+        super(name, age);
+        this.number = number;
+      }
+      study() {
+        console.log(`学生: ${this.name}, 学号： ${this.number}`)
+      }
+    }
+
+    class Teacher extends People {
+      constructor(name, age, title) {
+        super(name, age);
+        this.title = title;
+      }
+      sayHello() {
+        console.log(`老师: ${this.name}, 职称： ${this.title}`)
+      }
+    }
+
+    const student = new Student('Tom', 18, 123456);
+    console.log(student.name)
+    student.eat();
+    student.study();
+
+    const teacher = new Teacher('Alice', 30, '教授');
+    console.log(teacher.name)
+    teacher.eat();
+    teacher.sayHello();
+
+    console.log(student.__proto__) // 隐式原型
+    console.log(Student.prototype) // 显示原型
+
+    console.log(student.hasOwnProperty('name'))
+    console.log(student.hasOwnProperty('eat'))
+    console.log(student.__proto__.hasOwnProperty('eat'))
+  </script>
+</body>
+</html>
