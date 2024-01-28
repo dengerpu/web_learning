@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="container">
+
+  </div>
+<script>
+// 修改 DOM
+const p1 = document.createElement('p');
+p1.innerHTML = '一段文字'
+const p2 = document.createElement('p')
+p2.innerHTML = '一段文字'
+const p3 = document.createElement('p')
+p3.innerHTML = '一段文字'
+const container = document.getElementById('container');
+container.appendChild(p1)
+container.appendChild(p2)
+container.appendChild(p3)
+
+// // 微任务：渲染之前执行（DOM 结构已更新）
+// Promise.resolve().then(() => {
+//     const length = container.children.length
+//     alert(`micro task ${length}`)
+// })
+
+// 宏任务：渲染之后执行（DOM 结构已更新）
+setTimeout(() => {
+    const length = container.children.length
+    alert(`macro task ${length}`)
+})
+</script>
+</body>
+</html>
