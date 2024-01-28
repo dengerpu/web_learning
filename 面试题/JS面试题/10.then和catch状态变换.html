@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const p = Promise.resolve().then(() => {
+      console.log(1); // then正常执行，返回resolved状态
+    }).then(() => {
+      console.log('我还会再次触发')
+      throw new Error('error') // 异常执行，返回rejected状态
+    }).then(() => {
+      console.log('我不会触发，因为上一步返回的是rejected状态')
+    }).catch(() =>{
+      console.log('catch捕获到异常')
+    })
+   
+    const p1 = Promise.reject().catch(() => {
+      console.log('p1: catch，正常执行') // 返回resolved状态
+    }).then(() => {
+      console.log('p1: catch正常执行，返回resolved状态，触发then')
+    })
+
+    const p2 = Promise.reject().catch(() => {
+      console.log('p2: catch，正常执行') 
+      throw new Error('error') // 返回rejected状态
+    }).catch(() => {
+      console.log('p2: 返回reject状态我又执行了')
+    })
+  </script>
+</body>
+</html>

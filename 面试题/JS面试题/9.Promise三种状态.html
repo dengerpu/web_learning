@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promise三种状态</title>
+</head>
+<body>
+  <script>
+    const p = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve()
+      }, 1000)
+    })
+    console.log(p) // 输出: Promise { <pending> }
+    
+    // 1秒钟后状态变为 fulfilled
+    console.log(p) // 输出: Promise { <fulfilled> }
+    
+    const p2 = new Promise(() => {})
+    console.log(p2) // 输出: Promise { <pending> }
+    
+    const p3 = Promise.reject();
+    console.log(p3) // 输出: Promise { <rejected> }
+
+    // pending状态的Promise不会触发.then和.catch
+    const p4 = new Promise(() => {})
+    .then(() => {
+      console.log('pending状态的Promise不会触发.then和.catch')
+    })
+    .catch(() => {
+      console.log('pending状态的Promise不会触发.then和.catch')
+    })
+
+    const p5 = new Promise((resolve, reject) => {
+      resolve()
+    })
+    .then(() => {
+      console.log('resolveed状态只会出发.then')
+    })
+    .catch(() => {
+      console.log('resolveed状态只会出发.then')
+    })
+  
+    const p6 = new Promise((resolve, reject) => {
+      reject()
+    })
+    .then(() => {
+      console.log('rejected状态只会出发.catch')
+    })
+    .catch(() => {
+      console.log('rejected状态只会出发.catch')
+    })
+  </script>
+</body>
+</html>
