@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // // async 函数返回结果都是 Promise 对象（如果函数内没返回 Promise ，则自动封装一下）
+    // async function fn2() {
+    //     return new Promise(() => {})
+    // }
+    // console.log( fn2() ) // Promise <pending>
+
+    // async function fn1() {
+    //     return 100
+    // }
+    // console.log( fn1() ) // 相当于 Promise.resolve(100)
+
+    // // await 后面跟 Promise 对象：会阻断后续代码，等待状态变为 resolved ，才获取结果并继续执行
+    // // await 后续跟非 Promise 对象：会直接返回
+    // !(async function () {
+    //     const p1 = new Promise(() => {})
+    //     await p1
+    //     console.log('p1') // 不会执行
+    // })()
+
+    // !(async function () {
+    //     const p2 = Promise.resolve(100)
+    //     const res = await p2
+    //     console.log(res) // 100
+    // })()
+
+    // !(async function () {
+    //     const res = await 100
+    //     console.log(res) // 100
+    // })()
+
+    // !(async function () {
+    //     const p3 = Promise.reject('some err')
+    //     const res = await p3
+    //     console.log(res) // 不会执行
+    // })()
+
+    // // try...catch 捕获 rejected 状态
+    // !(async function () {
+    //     const p4 = Promise.reject('some err')
+    //     try {
+    //         const res = await p4
+    //         console.log(res)
+    //     } catch (ex) {
+    //         console.error(ex)
+    //     }
+    // })()
+
+    console.log("===========")
+    async function async1 () {
+      console.log('async1 start')
+      await async2() // 后面的代码相当于放在 callback 中，最后执行
+      console.log('async1 end') // 关键在这一步，它相当于放在 callback 中，最后执行
+    }
+
+    async function async2 () {
+      console.log('async2')
+    }
+
+    console.log('script start')
+    async1()
+    console.log('script end')
+
+    // 输出结果：
+    // script start
+    // async1 start
+    // async2
+    // script end // 先执行同步代码，然后执行 callback 中的代码，所以 async1 end 最后
+    // async1 end
+  </script>
+</body>
+</html>

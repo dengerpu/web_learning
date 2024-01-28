@@ -30,6 +30,14 @@
     }).then(img2 => {
       console.log(img2)
     })
+
+    // 用async,await改写上面的代码，使其更加简洁和易读
+    !(async function() {
+      let img1 = await loadImg(url)
+      console.log(img1)
+      let img2 = await loadImg(url2)
+      console.log(img2)
+    })()
   </script>
 </body>
 </html>
