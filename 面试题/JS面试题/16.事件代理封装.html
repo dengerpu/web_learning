@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件代理封装</title>
+</head>
+
+<body>
+  <div id="div1">
+    <a id="a1" href="#">a1</a>
+    <a href="#">a2</a>
+    <a href="#">a3</a>
+    <a href="#">a4</a>
+  </div>
+  <button>点击增加一个 a 标签</button>
+  <script>
+    function bindEvent(elem, type, selector, fn) {
+      if (fn == null) {
+        fn = selector
+        selector = null
+      }
+      elem.addEventListener(type, function (e) {
+        let target  = e.target
+        // 需要事件代理
+        if (selector) {
+          if (target.matches(selector)) {
+            fn.call(target, e)
+          }
+        } else {
+          // 直接绑定
+          fn.call(target, e)
+        }
+      })
+    }
+     // 使用代理
+     const div1 = document.getElementById('div1')
+    bindEvent(div1, 'click', 'a', function(e) {
+      alert(this.innerHTML)
+    })
+
+    // 不使用代理
+    const a = document.getElementById('a1')
+    bindEvent(a, 'click', function(e) {
+      e.stopPropagation()
+      alert(this.innerHTML)
+    })
+  </script>
+</body>
+
+</html>
