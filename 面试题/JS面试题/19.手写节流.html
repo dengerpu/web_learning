@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>节流</title>
+</head>
+<body>
+  <p id="p1" draggable="true">拖动我!</p>
+  <script>
+    function throttle(func, delay) {
+      let timer = null;
+
+      return function() {
+        // 当我们发现这个定时器存在时，则表示定时器已经在运行中，还没到该触发的时候，则 return
+        if(timer) return
+        // 定时器不存在了，说明已经触发过了，重新计时
+        timer = setTimeout(() => {
+          func.apply(this, arguments);
+          timer = null;
+        }, delay);
+      }
+    }
+  </script>
+  <script>
+    const p1 = document.getElementById('p1');
+    p1.addEventListener('drag', throttle(function(e) {
+      console.log('触发拖动事件', e);
+    }, 1000));
+  </script>
+</body>
+</html>
