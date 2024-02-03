@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>防抖</title>
+</head>
+<body>
+  <input type="text" id="input1">
+
+  <script>
+    function debounce(func, delay = 200) {
+      // timer在闭包中
+      let timer = null;
+      // 返回一个函数
+      return function() {
+        if(timer) {
+          clearTimeout(timer);
+        }
+        timer = setTimeout(() => {
+          func.apply(this, arguments); // 应用函数到正确的上下文中
+          // 清除定时器
+          timer = null;
+        }, delay)
+      }
+    }
+  </script>
+
+  <script>
+    const input1 = document.getElementById('input1')
+    input1.addEventListener('keyup', debounce(function (e) {
+        console.log(e.target)
+        console.log(input1.value)
+    }, 600))
+  </script>
+</body>
+</html>
