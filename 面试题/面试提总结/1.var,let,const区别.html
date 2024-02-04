@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // var 变量提升 相当于 var a; console.log(a); a = 10
+    // console.log('a', a) // undefined
+    // var a = 100
+
+    // // let 没有变量提升
+    // console.log('b', b) // Uncaught ReferenceError: Cannot access 'b' before initialization
+    // let b = 200
+
+
+    // var 没有块级作用域
+    for (var i = 0; i < 10; i++) {
+        var j = 1 + i
+    }
+    console.log(i, j) // 10 10
+
+    // let 有块级作用域
+    for (let x = 0; x < 10; x++) {
+        let y = 1 + x
+    }
+    console.log(x, y) // Uncaught ReferenceError: x is not defined
+  </script>
+</body>
+</html>
