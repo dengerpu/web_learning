@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p>
+    <a href="">1</a>
+    <a href="">2</a>
+    <a href="">3</a>
+    <a href="">4</a>
+    <a href="">5</a>
+  </p>
+  <script>
+    function bindEvent(elem, type, selector, fn) {
+      if(fn == null) {
+        fn = selector;
+        selector = null;
+      }
+      elem.addEventListener(type, function(e) {
+        const target = e.target;
+        if(selector) {
+          // 代理绑定
+          if(target.matches(selector)) {
+            fn.call(target, e);
+          }
+        } else {
+          // 普通绑定
+          fn.call(target, e);
+        }
+
+    })
+    }
+    const p = document.querySelector('p');
+    bindEvent(p, 'click', 'a', function(e) {
+      e.preventDefault();
+      console.log(this.innerHTML);
+    })
+  </script>
+</body>
+</html>
