@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 闭包 函数作为返回值 —— 内存不会被释放
+    function create() {
+      let a = 100
+      return function() {
+        console.log(a)
+      }
+    }
+    let fun = create();
+    let a = 200;
+    fun(); // 100
+
+    // 闭包 函数作为参数 —— 内存不会被释放
+    function create2(fn) {
+      let b = 100;
+      fn()
+    }
+    let b = 200
+    let fun2 = function() {
+      console.log(b);
+    }
+    create2(fun2); // 200
+  </script>
+</body>
+</html>
