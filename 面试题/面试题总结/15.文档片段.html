@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // const body = document.body
+    // console.time('添加dom')
+    // for(let i = 0; i < 10* 10000; i++) {
+    //   const div = document.createElement('div')
+    //   div.innerHTML = i
+    //   body.appendChild(div)
+    // }
+    // console.timeEnd('添加dom') // 添加dom: 253.501953125 ms
+
+    // 利用文档片段
+    const body = document.body
+    const fragment = document.createDocumentFragment()
+    console.time('fragment添加dom')
+    for(let i = 0; i < 10 * 10000; i++) {
+      const div = document.createElement('div')
+      div.innerHTML = i
+      fragment.appendChild(div)
+    }
+    // 都完成之后，再插入到 DOM 树中
+    body.appendChild(fragment)
+    console.timeEnd('fragment添加dom') // fragment添加dom: 245.189697265625 ms
+  </script>
+</body>
+</html>
