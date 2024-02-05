@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function fun() {
+      console.log(this);
+    }
+    fun(); // Window
+    var obj = {
+      name: 'obj',
+    };
+    fun.apply(obj, [1, 2, 3])
+    fun.call(obj, 1, 2, 3)
+    const res = fun.bind(obj, 1, 2, 3)
+    res()
+  </script>
+</body>
+</html>
