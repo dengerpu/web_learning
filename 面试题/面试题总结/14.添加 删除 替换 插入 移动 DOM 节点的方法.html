@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p>我是默认的p</p>
+  <script>
+    const body = document.body;
+    // 创建结点
+    const div = document.createElement('div');
+    div.innerHTML = '我是被添加的div'
+    // 添加结点。添加到最后
+    body.appendChild(div);
+
+    const p = document.querySelector('p');
+    // 添加结点，添加到指定元素的前面 refNode.parentNode.insertBefore(newNode,refNode)
+    const a = document.createElement('a');
+    //  直接附带在a标签上的
+    a.setAttribute('href', 'http://www.baidu.com');
+    a.style.color = 'red';
+    a.innerText = '被添加到p标签前面的a';
+    p.parentNode.insertBefore(a, p);
+
+    // 获取子节点
+    console.log(body.childNodes);
+    
+    // 替换元素 替换：oldNode.parentNode.replaceChild(newNode,oldNode)
+    const a2 = document.createElement('a');
+    a2.innerText = "我是被新替换的a标签"
+    a.parentNode.replaceChild(a2, a);
+
+    // 删除元素 删除：oldNode.parentNode.removeChild(oldNode)
+    p.parentNode.removeChild(p);
+  </script>
+</body>
+</html>
