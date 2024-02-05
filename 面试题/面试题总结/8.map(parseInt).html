@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    console.log([10,20,30].map(parseInt )) // [10, NaN, NaN]
+    // 原理
+    // 拆解开来为
+    const res = [10,20,30,40,50,60,70,80,90,100].map((num, index) => {
+      console.log(num, index)
+      return parseInt(num, index)
+      // parseInt 第二个参数是进制
+      // 如果省略该参数或其值为 0，则数字将以 10 为基础来解析。如果它以 “0x” 或 “0X” 开头，将以 16 为基数。
+      // 如果该参数小于 2 或者大于 36，则 parseInt() 将返回 NaN
+    })
+    console.log(res) // [10, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, 81]
+    // parseInt(20,1) // 20当成1进制来解析，会报错。1进制不能超过1
+    // parseInt(100,9) 1*9的2次方+0+0 = 81  （100当成9进制来解析）
+
+
+    console.log([10,20,30].map(item => parseInt(item))) // [10, 20, 30]
+  </script>
+</body>
+</html>
