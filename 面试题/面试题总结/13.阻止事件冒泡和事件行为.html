@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      width: 100px;
+      height: 100px;  
+      background-color: antiquewhite;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <p>123</p>
+  </div>
+  <script>
+    const body = document.body;
+    const div = document.querySelector('div');
+    const p = document.querySelector('p');
+    body.addEventListener('click', function(e) {
+      console.log('body 捕获');
+    }, true)
+    div.addEventListener('click', function(e) {
+      console.log('div 捕获');
+    }, true)
+    p.addEventListener('click', function(e) {
+      console.log('p 捕获');
+      e.stopPropagation(); // 阻止事件冒泡
+    }, true)
+    body.addEventListener('click', function(e) {
+      console.log('body 冒泡');
+    }, false)
+    div.addEventListener('click', function(e) {
+      console.log('div 冒泡');
+    }, false)
+    p.addEventListener('click', function(e) {
+      console.log('p 冒泡');
+    }, false)
+  </script>
+</body>
+</html>
