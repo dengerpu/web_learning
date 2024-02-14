@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // const url = 'https://www.xxx.com/path/index.html?a=100&b=200&c=300#anchor'
+    function query(name) {
+      const search = location.search.substring(1); // 去掉?号
+      // search：a=100&b=200&c=300
+      // 写new RegExp就不用写//   /^abc$/ 和 new RegExp('^abc$', 'i') 效果一样
+      // (^|&) 开始或者&符号 例如a=100, &b=100都可以匹配到   小括号代表一个组
+      // ([^&]*) 匹配除了&符号之外的字符串，这个括号代表一个组
+      // (&|$) 结束或者&符号 例如a=100, &b=100都可以匹配到
+      const reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`, 'i');
+      const res = search.match(reg);
+      console.log(res) // 0: "a=100&", 1: "", 2: "100", 3: "&"
+      if (res != null) {
+        return decodeURIComponent(res[2]); // 解码
+      }
+      return null
+    }
+    query('a')
+
+    const pList = new URLSearchParams(location.search)
+    console.log(pList) // URLSearchParams {size: 2}
+    console.log(pList.get('a')) // 100
+  </script>
+</body>
+</html>
