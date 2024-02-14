@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    try {
+      throw new Error('出错了') // 手动抛出 throw
+        // todo
+    } catch (ex) {
+       console.log(ex) // 手动捕获 catch
+    } finally {
+        // todo
+    }
+    // throw new Error('出错了') // 手动抛出 throw
+    window.onerror = function (message, source, lineNom, colNom, error) {
+      console.log(message, source, lineNom, colNom, error)
+    }
+  </script>
+</body>
+</html>
