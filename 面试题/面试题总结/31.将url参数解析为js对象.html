@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function parseUrl() {
+      const search = location.search.substring(1);
+      const kvList = search.split('&');
+      const result = {};
+      for (let kv of kvList) {
+        const [key, value] = kv.split('=');
+        result[key] = decodeURIComponent(value);
+      }
+      return result;
+    }
+    console.log(parseUrl())
+
+    // 新的API URLSearchParams
+    function queryObject() {
+      const kvList = new URLSearchParams(location.search)
+      const res = {}
+      kvList.forEach((value, key) => {
+        res[key] = value
+      })
+      return res
+    }
+    console.log(queryObject())
+
+  </script>
+</body>
+</html>
