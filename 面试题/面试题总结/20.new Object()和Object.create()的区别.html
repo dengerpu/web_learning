@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // const obj1 = {
+    //     a: 10,
+    //     b: 20,
+    //     sum() {
+    //         return this.a + this.b
+    //     }
+    // } // {a: 10, b: 20, sum: ƒ}
+    // const obj2 = new Object({
+    //     a: 10,
+    //     b: 20,
+    //     sum() {
+    //         return this.a + this.b
+    //     }
+    // }) // {a: 10, b: 20, sum: ƒ}
+    // const obj3 = Object.create({
+    //     a: 10,
+    //     b: 20,
+    //     sum() {
+    //         return this.a + this.b
+    //     }
+    // }) // {[[Prototype]]: Object}
+
+    const obj1 = {
+        a: 10,
+        b: 20,
+        sum() {
+            return this.a + this.b
+        }
+    }
+    const obj2 = new Object(obj1)
+    console.log(obj1 === obj2) // true
+    const obj3 = Object.create(obj1)
+    console.log(obj1 === obj3) // false
+
+    const obj4 = Object.create(obj1)
+    console.log(obj3 === obj4) // false
+
+    // 然后修改 obj1 ，看 obj2 obj3 和 obj4
+    // obj2,3,4都可以找到printA函数
+    // obj2直接挂载有， obj3,4需要通过原型链查找
+    obj1.printA = function () {
+        console.log(this.a)
+    }
+  </script>
+</body>
+</html>
