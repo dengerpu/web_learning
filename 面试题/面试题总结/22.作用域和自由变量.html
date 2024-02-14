@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let i
+    for(i = 1; i <= 3; i++) {
+      setTimeout(function(){
+          console.log(i) // 输出3个4
+      }, 0)
+    }
+
+    let a = 100
+    function test() {  // 会被提升到作用域顶部, 里面的内容先不要看，执行的时候再看
+        alert("test里面第一个a="+ a) 
+        a = 10
+        alert("test里面第二个a="+ a)
+    }
+    test() // 输出100, 10
+    alert("外面的a="+ a) // 输出 10
+  </script>
+</body>
+</html>
