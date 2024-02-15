@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #app {
+      width: 100px;
+      height: 100px;
+      background-color: brown;
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  
+  <script>
+    // let currWidth = 100;
+    // let endWidth = 640;
+    // const app = document.getElementById('app');
+    // // 3s 把宽度从 100px 变为 640px ，即增加 540px
+    // function animate() {
+    //   currWidth += 3;
+    //   app.style.width = currWidth + 'px';
+    //   if(currWidth < endWidth) {
+    //     setTimeout(animate, 16.7); // 自己控制时间
+    //   }
+    // }
+    // animate();
+  </script>
+
+  <script>
+    let currWidth = 100;
+    let endWidth = 640;
+    const app = document.getElementById('app');
+    function animate() {
+      currWidth += 3;
+      app.style.width = currWidth + 'px';
+      if(currWidth < endWidth) {
+        window.requestAnimationFrame(animate); // 时间不用自己控制
+      }
+    }
+    animate()
+  </script>
+</body>
+</html>
