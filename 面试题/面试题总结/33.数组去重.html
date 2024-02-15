@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 解法一： 顺序不能保证
+    function unique(arr) {
+      const obj = {}
+      arr.forEach(item => {
+        obj[item] = 1 
+        // 用 Object ，去重计算高效，但顺序不能保证。以及，非字符串会被转换为字符串！！！
+      })
+      return Object.keys(obj).map(item => +item)
+    }
+    console.log(unique([30, 10, 20, 30, 40, 10]))
+
+    // 解法二
+    function unique2(arr) {
+      const res = []
+      arr.forEach(item => {
+        if (res.indexOf(item) === -1) {
+          // 用数组，每次都得判断是否重复（低效），但能保证顺序
+          res.push(item)
+        }
+      })
+      return res
+    }
+    console.log(unique2([30, 10, 20, 30, 40, 10]))
+
+    // 解法三： 利用 Set
+    function unique3(arr) {
+      return Array.from(new Set(arr))
+    }
+    console.log(unique3([30, 10, 20, 30, 40, 10]))
+  </script>
+</body>
+</html>
