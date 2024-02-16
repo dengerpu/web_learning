@@ -3,9 +3,11 @@
     <TqlDemo></TqlDemo>
     <ComputedDemo></ComputedDemo>
     <WatchDemo></WatchDemo>
+    <ClassDemo></ClassDemo>
   </div>
 </template>
 <script>
+import ClassDemo from './views/基本使用/ClassDemo.vue'
 import ComputedDemo from './views/基本使用/ComputedDemo.vue'
 import TqlDemo from './views/基本使用/TqlDemo.vue'
 import WatchDemo from './views/基本使用/WatchDemo.vue'
@@ -14,7 +16,8 @@ export default {
   components: {
     TqlDemo,
     ComputedDemo,
-    WatchDemo
+    WatchDemo,
+    ClassDemo
   }
 }
 </script>
