@@ -24,6 +24,8 @@
     <!-- 异步组件 -->
     <FormDemo v-if="show"></FormDemo>
     <button @click="show = true">点击展示</button>
+
+    <mixins></mixins>
   </div>
 </template>
 <script>
@@ -38,6 +40,7 @@ import TqlDemo from './views/基本使用/TqlDemo.vue'
 import WatchDemo from './views/基本使用/WatchDemo.vue'
 import ComponentsDemo from './views/组件使用/index.vue'
 import CustomVModel from './views/高级特性/CustomVModel.vue'
+import Mixins from './views/高级特性/Mixins.vue'
 import NextTick from './views/高级特性/NextTick.vue'
 import SlotScope from './views/高级特性/SlotScope.vue'
 export default {
@@ -58,7 +61,8 @@ export default {
     ComponentsDemo,
     CustomVModel,
     NextTick,
-    SlotScope
+    SlotScope,
+    Mixins
   },
   data() {
     return {
