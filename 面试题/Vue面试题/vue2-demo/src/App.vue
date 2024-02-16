@@ -11,6 +11,12 @@
     <ComponentsDemo></ComponentsDemo>
     <CustomVModel v-model="name"></CustomVModel>
     <NextTick></NextTick>
+    <SlotScope url="http://www.baidu.com">
+      <!-- v-slot这个名字也是任意的 -->
+     <template v-slot="scoped">
+        {{ scoped.slotData.title }}
+     </template>
+    </SlotScope>
   </div>
 </template>
 <script>
@@ -25,6 +31,7 @@ import WatchDemo from './views/基本使用/WatchDemo.vue'
 import ComponentsDemo from './views/组件使用/index.vue'
 import CustomVModel from './views/高级特性/CustomVModel.vue'
 import NextTick from './views/高级特性/NextTick.vue'
+import SlotScope from './views/高级特性/SlotScope.vue'
 export default {
   name: 'app',
   components: {
@@ -38,7 +45,8 @@ export default {
     FormDemo,
     ComponentsDemo,
     CustomVModel,
-    NextTick
+    NextTick,
+    SlotScope
   },
   data() {
     return {
