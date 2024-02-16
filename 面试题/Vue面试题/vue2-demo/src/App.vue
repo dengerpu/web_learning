@@ -8,6 +8,7 @@
     <ListDemo></ListDemo>
     <EventDemo></EventDemo>
     <FormDemo></FormDemo>
+    <ComponentsDemo></ComponentsDemo>
   </div>
 </template>
 <script>
@@ -19,6 +20,7 @@ import FormDemo from './views/基本使用/FormDemo.vue'
 import ListDemo from './views/基本使用/ListDemo.vue'
 import TqlDemo from './views/基本使用/TqlDemo.vue'
 import WatchDemo from './views/基本使用/WatchDemo.vue'
+import ComponentsDemo from './views/组件使用/index.vue'
 export default {
   name: 'app',
   components: {
@@ -29,7 +31,8 @@ export default {
     ConditionDemo,
     ListDemo,
     EventDemo,
-    FormDemo
+    FormDemo,
+    ComponentsDemo
   }
 }
 </script>
