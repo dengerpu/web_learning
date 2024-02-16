@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const arr = [10, 20, 30, 40, 50]
+    const res = arr.reduce((sum, currVal, index, arr) => {
+      console.log("前一个值:", sum, "。当前值：", currVal, "。索引：", index, "。数组：", arr)
+      return sum + currVal
+    }, 0)
+    console.log(res)
+
+    // 计数
+    function count(arr, value) {
+      // 计算 arr 中有几个和 value 相等的数
+      return arr.reduce((a, v) => (v === value ? a + 1 : a + 0), 0)
+    }
+    const arr2 = [10, 20, 30, 40, 50, 10, 20, 10]
+    console.log( count(arr2, 20) )
+
+    // 数组输出字符串
+    const arr3 = [
+        { name: 'xialuo', number: '100' },
+        { name: 'madongmei', number: '101' },
+        { name: 'zhangyang', number: '102' }
+    ]
+    // 普通做法 1（需要声明变量，不好）
+    let arr3Str = ''
+    arr3.forEach(item => {
+        arr3Str += `${item.name} - ${item.number}\n`
+    })
+    console.log(arr3Str)
+    // 普通做法 2（map 生成数组，再进行 join 计算）
+    console.log(
+        arr3.map(item => {
+            return `${item.name} - ${item.number}`
+        }).join('\n')
+    )
+    // reduce 做法（只遍历一次，即可返回结果）
+    console.log(
+        arr3.reduce((str, item) => {
+            return `${str}${item.name} - ${item.number}\n`
+        }, '')
+    )
+  </script>
+</body>
+</html>
