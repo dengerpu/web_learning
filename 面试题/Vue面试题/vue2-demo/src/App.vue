@@ -7,7 +7,7 @@
     <ConditionDemo></ConditionDemo>
     <ListDemo></ListDemo>
     <EventDemo></EventDemo>
-    <FormDemo></FormDemo>
+    <!-- <FormDemo></FormDemo> -->
     <ComponentsDemo></ComponentsDemo>
     <CustomVModel v-model="name"></CustomVModel>
     <NextTick></NextTick>
@@ -17,6 +17,13 @@
         {{ scoped.slotData.title }}
      </template>
     </SlotScope>
+
+    <!-- 动态组件 -->
+    <component :is="currentComponent"></component>
+
+    <!-- 异步组件 -->
+    <FormDemo v-if="show"></FormDemo>
+    <button @click="show = true">点击展示</button>
   </div>
 </template>
 <script>
@@ -24,7 +31,8 @@ import ClassDemo from './views/基本使用/ClassDemo.vue'
 import ComputedDemo from './views/基本使用/ComputedDemo.vue'
 import ConditionDemo from './views/基本使用/ConditionDemo.vue'
 import EventDemo from './views/基本使用/EventDemo.vue'
-import FormDemo from './views/基本使用/FormDemo.vue'
+// 这是同步写法
+// import FormDemo from './views/基本使用/FormDemo.vue'
 import ListDemo from './views/基本使用/ListDemo.vue'
 import TqlDemo from './views/基本使用/TqlDemo.vue'
 import WatchDemo from './views/基本使用/WatchDemo.vue'
@@ -42,7 +50,11 @@ export default {
     ConditionDemo,
     ListDemo,
     EventDemo,
-    FormDemo,
+    FormDemo: () => import("./views/基本使用/FormDemo.vue"),
+    // 相当于
+    // FormDemo: () => {
+    //   return import("./views/基本使用/FormDemo.vue")
+    // }
     ComponentsDemo,
     CustomVModel,
     NextTick,
@@ -50,7 +62,9 @@ export default {
   },
   data() {
     return {
-      name: "自定义model"
+      name: "自定义model",
+      currentComponent: "SlotScope",
+      show: false
     }
   }
 }
