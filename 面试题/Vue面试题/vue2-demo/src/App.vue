@@ -8,7 +8,8 @@
     <ListDemo></ListDemo>
     <EventDemo></EventDemo>
     <!-- <FormDemo></FormDemo> -->
-    <ComponentsDemo></ComponentsDemo>
+    <ComponentsDemo v-if="show1"></ComponentsDemo>
+    <button @click="show1 = false">点击隐藏</button>
     <CustomVModel v-model="name"></CustomVModel>
     <NextTick></NextTick>
     <SlotScope url="http://www.baidu.com">
@@ -68,7 +69,8 @@ export default {
     return {
       name: "自定义model",
       currentComponent: "SlotScope",
-      show: false
+      show: false,
+      show1: true
     }
   }
 }

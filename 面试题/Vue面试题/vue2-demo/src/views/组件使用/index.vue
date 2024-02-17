@@ -56,6 +56,12 @@ export default {
   },
   updated() {
     console.log('index updated')
+  },
+  beforeDestroy() {
+    console.log('index beforeDestroy')
+  },
+  destroyed() {
+    console.log('index destroyed')
   }
 }
 </script>
