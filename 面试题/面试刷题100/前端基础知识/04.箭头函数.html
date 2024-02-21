@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="btn1">按钮1</button>
+  <script>
+    // 箭头函数的缺点1: 没有arguments
+    // const fn1 = () => {
+    //   console.log(arguments); // ReferenceError: arguments is not defined
+    // }
+    // fn1(1, 2, 3);
+
+    // 箭头函数缺点2：无法通过bind,call, apply来改变this的指向
+    const fn2 = () => {
+      console.log(this); // Window
+    }
+    fn2.call({ name: 'zs' }); // Window
+
+    //以下不适用于箭头函数
+    const obj = {
+      name: '张三',
+      getName: () => {
+        return this.name
+      }
+    }
+    console.log(obj.getName()) // ''
+
+    // 扩展对象原型（包括构造函数的原型）
+    const obj2 = {
+      name: '张三'
+    }
+    obj2.__proto__.getName = () => {
+      return this.name
+    }
+    console.log(obj2.getName()) // ''
+
+    // const Foo = (name, age) => {
+    //   this.name = name
+    //   this.age = age
+    // }
+    // const f = new Foo('张三', 20) // Foo is not a constructor
+
+    const btn1 = document.getElementById('btn1')
+    btn1.addEventListener('click', () => {
+      console.log(this === window) // true
+      this.innerHTML = 'clicked'
+    })
+  </script>
+</body>
+
+</html>
