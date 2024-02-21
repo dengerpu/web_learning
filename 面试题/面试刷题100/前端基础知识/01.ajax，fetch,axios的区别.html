@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function ajax(url, successFn) {
+      let xhr = new XMLHttpRequest();
+      // true代表异步请求
+      xhr.open('GET', 'https://api.apiopen.top/getJoke', true);
+      xhr.onreadystatechange = function() {
+        if(xhr.readyState === 4) {
+          if(xhr.status = 200) {
+            // 可以调用回调函数
+            // successFn(xhr.responseText)
+            console.log(xhr.responseText);
+          }
+        }
+      }
+    }
+
+    function ajax2(url, successFn) {
+      return fetch(url).then(res => res.json()).then(data => successFn(data))
+    }
+  </script>
+</body>
+</html>
