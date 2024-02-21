@@ -1,27 +1,31 @@
 
-interface ILinkListNode {
+export interface ILinkListNode {
   value: number;
   next?: ILinkListNode;
 }
 
-function reverseLinkList(listNode: ILinkListNode): ILinkListNode {
+export function reverseLinkList(listNode: ILinkListNode): ILinkListNode {
   // 定义三个指针
-  let prev : ILinkListNode | null = null;
-  let curr : ILinkListNode | null = null;
-  let next : ILinkListNode | null = listNode;
-  while(next) {
+  let prevNode : ILinkListNode | undefined = undefined;
+  let currNode : ILinkListNode | undefined = undefined;
+  let nextNode : ILinkListNode | undefined = listNode;
+  while(nextNode) {
     // 删除第一个元素的next
-    if(curr !== null && prev === null) {
-      delete curr.next;
+    if(currNode != null && prevNode == null) {
+      delete currNode.next;
     }
     // 反转指针
-    if(curr && prev) {
-      curr.next = prev;
+    if(currNode && prevNode) {
+      currNode.next = prevNode;
     }
-    prev = curr;
-    curr = next;
-    next = next.next;
+    prevNode = currNode;
+    currNode = nextNode;
+    // @ts-ignore
+    nextNode = nextNode?.next;
   }
+  // 最后一个的补充：当 nextNode 空时，此时 curNode 尚未设置 next
+  currNode!.next = prevNode;
+  return currNode!;
 
 }
 
@@ -30,7 +34,7 @@ function reverseLinkList(listNode: ILinkListNode): ILinkListNode {
  * @param arr 
  * @returns 
  */
-function createLinkList(arr: number[]):ILinkListNode  {
+export function createLinkList(arr: number[]):ILinkListNode  {
   const length = arr.length;
   if(length === 0) throw new Error('arr is empty')
   // 最后一个结点
@@ -46,3 +50,10 @@ function createLinkList(arr: number[]):ILinkListNode  {
   }
   return currNode
 }
+
+const arr = [100, 200, 300, 400, 500]
+const list = createLinkList(arr)
+console.info('list:', list)
+
+const list1 = reverseLinkList(list)
+console.info('list1:', list1)
