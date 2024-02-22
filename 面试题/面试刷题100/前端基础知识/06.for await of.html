@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 定义一个创建 promise 的函数
+    function createTimeoutPromise(val) {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          resolve(val)
+        }, 1000)
+      })
+    }
+    // (async function () {
+    //   const p1 = createTimeoutPromise(10)
+    //   const p2 = createTimeoutPromise(20)
+
+    //   const v1 = await p1
+    //   console.log(v1)
+    //   const v2 = await p2
+    //   console.log(v2)
+    // })()
+
+    (async function () {
+      const list = [
+        createTimeoutPromise(10),
+        createTimeoutPromise(20)
+      ]
+
+      // 第一，使用 Promise.all 执行
+      Promise.all(list).then(res => console.log(res))
+
+      // 第二，使用 for await ... of 遍历执行
+      for await (let item of list) {
+        console.log(item)
+      }
+
+      // 注意，如果用 for...of 只能遍历出各个 promise 对象，而不能触发 await 执行
+    })()
+  </script>
+</body>
+
+</html>
