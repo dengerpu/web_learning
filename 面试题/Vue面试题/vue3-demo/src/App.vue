@@ -4,6 +4,7 @@
   <ref-template></ref-template>
   <toRef></toRef>
   <toRefs></toRefs>
+  <MousePosition></MousePosition>
 </template>
 
 <script>
@@ -13,6 +14,7 @@ import Ref from './components/Ref.vue'
 import RefTemplate from './components/RefTemplate.vue'
 import toRef from './components/toRef.vue'
 import toRefs from './components/toRefs.vue'
+import MousePosition from './components/MousePosition/index.vue'
 
 export default {
   name: 'App',
@@ -22,7 +24,8 @@ export default {
     Ref,
     RefTemplate,
     toRef,
-    toRefs
+    toRefs,
+    MousePosition
   }
 }
 </script>
