@@ -6,6 +6,7 @@
   <toRefs></toRefs>
   <MousePosition></MousePosition>
   <VModel></VModel>
+  <watch></watch>
 </template>
 
 <script>
@@ -17,6 +18,7 @@ import toRef from './components/toRef.vue'
 import toRefs from './components/toRefs.vue'
 import MousePosition from './components/MousePosition/index.vue'
 import VModel from './components/VModel/index.vue'
+import Watch from './components/watch.vue'
 
 export default {
   name: 'App',
@@ -28,7 +30,8 @@ export default {
     toRef,
     toRefs,
     MousePosition,
-    VModel
+    VModel,
+    Watch
   }
 }
 </script>
