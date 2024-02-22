@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <p>111</p>
+  <p>222</p>
+  <script>
+    // for in遍历可枚举对象，如对象，数组，字符串，arguments等
+    let obj = { a: 1, b: 2, c: 3 };
+    // 判断是否可枚举 
+    console.log(Object.getOwnPropertyDescriptors(obj))
+    // 里面如果某个key enumerable为true则说明可以遍历到
+    for (let key in obj) {
+      console.log(key); // 输出a,b,c
+    }
+    let arr = [1, 2, 3]
+    for (let key in arr) {
+      console.log(key); // 输出0,1,2
+    }
+    let str = 'abc'
+    for (let key in str) {
+      console.log(key); // 输出0,1,2
+      // 因为字符串会以字符的形式存储在变量中，所以key为字符的索引值
+    }
+
+    // for of 遍历可迭代对象，如数组，字符串，Map/Set，arguments等
+    function fn() {
+      for (let argument of arguments) {
+        console.log(argument) // for...of 可以获取 value ，而 for...in 获取 key
+      }
+    }
+    fn(10, 20, 30)
+
+    const pList = document.querySelectorAll('p')
+    for (let p of pList) {
+      console.log(p) // for...of 可以获取 value ，而 for...in 获取 key
+    }
+
+    const set1 = new Set([10, 20, 30])
+    for (let n of set1) {
+      console.log(n)
+    }
+
+    let map1 = new Map([
+      ['x', 10], ['y', 20], ['z', 3]
+    ])
+    for (let n of map1) {
+      console.log(n)
+    }
+
+  </script>
+</body>
+
+</html>
