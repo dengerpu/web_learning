@@ -1,0 +1,24 @@
+{
+  "name": "webpack-basic-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack serve --config build-basic-config/webpack.dev.js",
+    "build": "webpack --config build-basic-config/webpack.prod.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "html-webpack-plugin": "^5.6.0",
+    "webpack": "^5.90.3",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.2",
+    "webpack-merge": "^5.10.0",
+    "clean-webpack-plugin": "^4.0.0"
+  },
+  "dependencies": {
+    
+  }
+}
