@@ -6,6 +6,15 @@ const { srcPath, distPath } = require('./paths')
 
 module.exports = merge(webpackCommonConf, {
   mode: 'development',
+  module: {
+    rules: [
+      // 直接引入图片 url
+      {
+        test: /\.(png|jpg|jpeg|gif)$/,
+        use: 'file-loader'
+      }
+    ]
+  },
   devServer: {
     historyApiFallback: true, // 解决404问题
     // contentBase: distPath, // 根目录，webpack5会报错
