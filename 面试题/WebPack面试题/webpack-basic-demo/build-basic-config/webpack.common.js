@@ -11,6 +11,15 @@ module.exports = {
         use: ['babel-loader'],
         include: srcPath,
         exclude: /node_modules/
+      },
+      {
+        test: /\.css$/,
+        // loader 的执行顺序是：从后往前, 从下往上
+        use: ['style-loader', 'css-loader', 'postcss-loader']
+      },
+      {
+        test: /\.less$/,
+        use: ['style-loader', 'css-loader', 'less-loader']
       }
     ]
   },

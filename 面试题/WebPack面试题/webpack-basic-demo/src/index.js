@@ -1,5 +1,7 @@
 // 引入css
-// import './style/style1.css'
+import './style/style1.css'
+// 引入less
+import './style/style2.less'
 
 console.log('window.ENV', ENV)
 
