@@ -3,7 +3,13 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const {srcPath, distPath} = require("./paths");
 
 module.exports = {
-  entry: path.join(srcPath,  'index.js'),
+  // 单入口配置
+  // entry: path.join(srcPath,  'index.js'),
+  // 多入口配置
+  entry: {
+    index: path.join(srcPath,  'index.js'),
+    other: path.join(srcPath,  'other.js')
+  },
   module: {
     rules: [
       {
@@ -24,9 +30,23 @@ module.exports = {
     ]
   },
   plugins: [
+    // 单入口配置
+    // new HtmlWebpackPlugin({
+    //   template: path.join(srcPath, 'index.html'),
+    //   filename: 'index.html'
+    // })
+
+    // 多入口配置
     new HtmlWebpackPlugin({
       template: path.join(srcPath, 'index.html'),
-      filename: 'index.html'
+      filename: 'index.html',
+      // chunks 表示该页面要引用哪些 chunk （即上面的 index 和 other），默认全部引用
+      chunks: ['index']
+    }),
+    new HtmlWebpackPlugin({
+      template: path.join(srcPath, 'other.html'),
+      filename: 'other.html',
+      chunks: ['other']
     })
   ]
 }

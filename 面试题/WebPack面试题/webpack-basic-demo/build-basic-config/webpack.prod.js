@@ -8,6 +8,7 @@ const { srcPath, distPath } = require('./paths')
 module.exports = merge(webpackCommonConf, {
   mode: 'production',
   output: {
+    // name 即多入口时 entry 的 key
     filename: '[name].[contenthash:8].js',
     path: distPath,
     // publicPath: 'http://cdn.abc.com'  // 修改所有静态文件 url 的前缀（如 cdn 域名），这里暂时用不到
