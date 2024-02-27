@@ -3,10 +3,11 @@
 
 console.log('window.ENV', ENV)
 
-// const print = (info) => {
-//   console.log(info)
-// }
-// print('hello webpack 5')
+const print = (info) => {
+  console.log(info)
+}
+print('hello webpack 5')
+
 
 // import { sum } from './math'
 // const sumRes = sum(10, 20)

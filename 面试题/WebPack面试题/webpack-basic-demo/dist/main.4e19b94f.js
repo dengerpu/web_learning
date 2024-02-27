@@ -1,0 +1,1 @@
+console.log("window.ENV","production"),console.log("hello webpack 5");
