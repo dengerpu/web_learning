@@ -19,6 +19,9 @@ module.exports = merge(webpackCommonConf, {
     // publicPath: 'http://cdn.abc.com'  // 修改所有静态文件 url 的前缀（如 cdn 域名），这里暂时用不到
   },
   module: {
+    // 独完整的 `react.min.js` 文件就没有采用模块化
+    // 忽略对 `react.min.js` 文件的递归解析处理
+    noParse: [/react\.min\.js$/],
     rules: [
       // 图片 - 考虑 base64 编码的情况
       {
