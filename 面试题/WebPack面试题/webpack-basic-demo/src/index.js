@@ -35,3 +35,14 @@ setTimeout(() => {
     console.log(res.default.message)
   })
 }, 3000)
+
+// import moment from 'moment'
+// moment.locale('zh-cn') // 设置语言为中文
+// console.log('local', moment.locale())
+// console.log('date', moment().format('ll'))
+
+import moment from 'moment'
+import 'moment/locale/zh-cn' // 手动引入中文语言包
+moment.locale('zh-cn')
+console.log('local', moment.locale())
+console.log('date', moment().format('ll'))
