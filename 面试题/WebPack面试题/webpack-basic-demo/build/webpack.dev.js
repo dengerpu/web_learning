@@ -8,6 +8,22 @@ module.exports = merge(webpackCommonConf, {
   mode: 'development',
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        use: ['babel-loader?cacheDirectory'], // 开启缓存
+        include: srcPath, // 明确范围
+        // 排除范围，include 和 exclude 两者选一个即可
+        // exclude: /node_modules/
+      },
+      {
+        test: /\.css$/,
+        // loader 的执行顺序是：从后往前, 从下往上
+        use: ['style-loader', 'css-loader', 'postcss-loader']
+      },
+      {
+        test: /\.less$/,
+        use: ['style-loader', 'css-loader', 'less-loader']
+      },
       // 直接引入图片 url
       {
         test: /\.(png|jpg|jpeg|gif)$/,
