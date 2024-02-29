@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack serve --config build-basic-config/webpack.dev.js",
-    "build": "webpack --config build-basic-config/webpack.prod.js"
+    "dev": "webpack serve --config build/webpack.dev.js",
+    "build": "webpack --config build/webpack.prod.js"
   },
   "browserslist": [
     "last 1 version",
