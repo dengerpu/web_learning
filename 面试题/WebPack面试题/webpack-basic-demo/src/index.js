@@ -28,3 +28,10 @@ import imgFile1 from './img/1.png'
 insertImgElem(imgFile1)
 import imgFile2 from './img/2.jpeg'
 insertImgElem(imgFile2)
+
+// 引入动态数据-懒加载  （默认支持）
+setTimeout(() => {
+  import('./dynamic-data.js').then(res => {
+    console.log(res.default.message)
+  })
+}, 3000)
