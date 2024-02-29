@@ -10,6 +10,9 @@ const print = (info) => {
 }
 print('hello webpack 5')
 
+import _ from 'lodash'
+console.log(_.each)
+
 
 import { sum } from './math'
 const sumRes = sum(10, 20)
