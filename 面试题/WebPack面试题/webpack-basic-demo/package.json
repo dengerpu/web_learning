@@ -7,6 +7,10 @@
     "dev": "webpack serve --config build-basic-config/webpack.dev.js",
     "build": "webpack --config build-basic-config/webpack.prod.js"
   },
+  "browserslist": [
+    "last 1 version",
+    "> 1%"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -21,8 +25,11 @@
     "html-webpack-plugin": "^5.6.0",
     "less": "^4.2.0",
     "less-loader": "^12.2.0",
+    "mini-css-extract-plugin": "^2.8.1",
+    "optimize-css-assets-webpack-plugin": "^6.0.1",
     "postcss-loader": "^8.1.0",
     "style-loader": "^3.3.4",
+    "terser-webpack-plugin": "^5.3.10",
     "url-loader": "^4.1.1",
     "webpack": "^5.90.3",
     "webpack-cli": "^5.1.4",

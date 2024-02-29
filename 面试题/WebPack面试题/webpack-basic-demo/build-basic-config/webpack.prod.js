@@ -1,6 +1,11 @@
 const path = require('path')
 const webpack = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+// 抽离css
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+// 压缩css
+const TerserJSPlugin = require('terser-webpack-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const webpackCommonConf = require('./webpack.common')
 const { merge } = require('webpack-merge')
 const { srcPath, distPath } = require('./paths')
@@ -30,7 +35,26 @@ module.exports = merge(webpackCommonConf, {
             // publicPath: 'http://cdn.abc.com'
           }
         }
-      }
+      },
+      // 抽离css
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader, // 注意这里不再使用style-loader
+          'css-loader',
+          'postcss-loader'
+        ]
+      },
+      // 抽离less
+      {
+        test: /\.less$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'less-loader',
+          'postcss-loader'
+        ]
+      } 
     ]
   },
   plugins: [
@@ -38,6 +62,14 @@ module.exports = merge(webpackCommonConf, {
     new webpack.DefinePlugin({
       // window.ENV = 'production'
       ENV: JSON.stringify('production')
+    }),
+    // 抽离css文件
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].[contenthash:8].css',
     })
-  ]
+  ],
+  optimization: {
+    // 压缩css
+    minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
+  }
 })
