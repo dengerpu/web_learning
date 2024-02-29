@@ -11,6 +11,8 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const webpackCommonConf = require('./webpack.common')
 // 多进程打包
 const HappyPack = require('happypack')
+// 多进程压缩js
+const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin')
 const { merge } = require('webpack-merge')
 const { srcPath, distPath } = require('./paths')
 
@@ -41,7 +43,7 @@ module.exports = merge(webpackCommonConf, {
         use: ['happypack/loader?id=babel'],
         include: srcPath,
         // exclude: /node_modules/
-      }, 
+      },
       // 图片 - 考虑 base64 编码的情况
       {
         test: /\.(png|jpg|gif|jpeg)$/,
@@ -92,7 +94,7 @@ module.exports = merge(webpackCommonConf, {
     // 忽略 moment 下的 /locale 目录
     new webpack.IgnorePlugin({
       resourceRegExp: /\.\/locale/,
-      contextRegExp:  /moment/
+      contextRegExp: /moment/
     }),
     // happyPack 开启多进程打包
     new HappyPack({
@@ -100,6 +102,25 @@ module.exports = merge(webpackCommonConf, {
       id: 'babel',
       // 如何处理 .js 文件，用法和 Loader 配置中一样
       loaders: ['babel-loader?cacheDirectory'],
+    }),
+    // 使用 ParallelUglifyPlugin 并行压缩输出的 JS 代码
+    new ParallelUglifyPlugin({
+      // 传递给 UglifyJS 的参数
+      // （还是使用 UglifyJS 压缩，只不过帮助开启了多进程）
+      uglifyJS: {
+        output: {
+          beautify: false, // 最紧凑的输出
+          comments: false, // 删除所有的注释
+        },
+        compress: {
+          // 删除所有的 `console` 语句，可以兼容ie浏览器
+          drop_console: true,
+          // 内嵌定义了但是只用到一次的变量
+          collapse_vars: true,
+          // 提取出出现多次但是没有定义成变量去引用的静态值
+          reduce_vars: true,
+        }
+      }
     })
   ],
   optimization: {
