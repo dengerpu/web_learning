@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p id="abc">1111</p>
+  <p>2222</p>
+  <p>3333</p>
+
+  <script>
+    // 获取到的是HTMLcollection对象，是一个类似数组的对象，它的每个元素都是一个DOM节点对象。
+    console.log(document.body.children)
+    const p = document.getElementsByTagName('p');
+    console.log(p); 
+
+    // 获取到的是NodeList对象，它是一个类似数组的对象，它的每个元素都是一个DOM节点对象。
+    console.log(document.body.childNodes)
+    const p1 = document.querySelectorAll('p');
+    console.log(p1);
+
+    // 结点类型
+    const p2 = document.querySelector('p');
+    console.log(p2); // 1
+  </script>
+</body>
+</html>
