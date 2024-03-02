@@ -29,5 +29,16 @@
     let fn1 = fn.myBind(obj);
     fn1(); // obj
   </script>
+
+  <script>
+    Function.prototype.myBind2 = function() {
+       let args = Array.prototype.slice.call(arguments);
+       let _this = args.shift();
+       let self = this;
+       return function() {
+         return self.apply(_this, args.concat(arguments));
+       }
+    }
+  </script>
 </body>
 </html>
