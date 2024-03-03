@@ -1,0 +1,14 @@
+<iframe
+  src="http://localhost:8080"
+  frameborder="0"
+  id="iframe"
+  onload="load()"
+></iframe>
+<script>
+  function load() {
+    iframe.contentWindow.postMessage("发送给服务器端的数据", "http://localhost:8080");
+    window.onmessage = e => {
+      console.log("客户端接收到的数据", e.data);
+    };
+  }
+</script>

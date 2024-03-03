@@ -1,0 +1,7 @@
+<div>hello</div>
+<script>
+  window.onmessage = e => {
+    console.log("服务器端接收到的数据:", e.data);
+    e.source.postMessage(e.data + "---服务端处理", e.origin);
+  };
+</script>
