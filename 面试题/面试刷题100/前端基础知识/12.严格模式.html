@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    "use strict"
+    // 全局变量必须声明
+    // n = 10 // Uncaught ReferenceError: n is not defined
+
+    // 禁止使用with语句
+    // const obj = {a: 1, b: 2, c: 3}
+    // with(obj) { // 'with' statements are not allowed in strict mode.
+    //   console.log(a)
+    //   console.log(b)
+    //   console.log(c)
+    // }
+
+    // 创建eval作用域
+    var x = 10
+    eval('var x = 20; console.log(x)')
+    console.log(x)
+
+    // 禁止this指向全局作用域
+    // function fn() {
+    //   console.log(this) // undefined
+    // }
+    // fn()
+
+    // 函数参数变量名不能重复
+    // function fn(a, a, b) {
+    //   console.log(a, b) // Uncaught SyntaxError: Duplicate parameter name not allowed in this context
+    // }
+    // fn(1, 2, 3)
+  </script>
+</body>
+
+</html>
