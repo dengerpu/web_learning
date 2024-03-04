@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 1.字面量方式
+    // let person = {
+    //   name: 'John',
+    //   age: 30,
+    //   gender: 'male'
+    // };
+    // let preson2 = {
+    //   name: 'John',
+    //   age: 30,
+    //   gender: 'male'
+    // };
+    // console.log(person === preson2) // false
+
+    //2. 构造函数方式
+    // function Person(name, age, gender) {
+    //   this.name = name;
+    //   this.age = age;
+    //   this.gender = gender;
+    // }
+
+    // let person = new Person('John', 30, 'male');
+    // let preson2 = new Person('John', 30, 'male');
+    // console.log(person === preson2) // false
+
+    //3.Object.create()
+    // let personPrototype = {
+    //   introduce: function () {
+    //     console.log(`My name is ${this.name} and I'm ${this.age} years old.`);
+    //   }
+    // };
+
+    // let person = Object.create(personPrototype);
+    // person.name = 'John';
+    // person.age = 30;
+    // console.log(person)// {name: 'John', age: 30}
+    // console.log(person.__proto__ === personPrototype) // true
+    // console.log(person.__proto__ === personPrototype.prototype) // false  personPrototype.prototype是undefined
+    // console.log(personPrototype.__proto__ === Object.prototype) // true
+
+    // 4.类
+    // class Person {
+    //   constructor(name, age) {
+    //     this.name = name;
+    //     this.age = age;
+    //   }
+
+    //   greet() {
+    //     console.log("Hello, " + this.name);
+    //   }
+    // }
+
+    // const person = new Person("Dave", 32);
+    // console.log(person.__proto__ === Person.prototype) // true
+
+    //5. 工厂函数
+    // function createPerson(name, age) {
+    //   var o = new Object();
+    //   o.name = name;
+    //   o.age = age;
+    //   o.greet = function () {
+    //     console.log("Hi, my name is " + this.name + " and I am " + this.age + " years old.");
+    //   };
+    //   return o;
+    // }
+
+    // const person = createPerson("Eve", 27);
+    // console.log(person.__proto__ === createPerson.prototype) // false
+    // console.log(person.__proto__ === Object.prototype) // true
+    // // 无法识别为特定类型
+    // console.log(person instanceof createPerson) // false
+    // console.log(person instanceof Object) // true
+
+    // 6.原型模式
+    // function Person() { }
+
+    // Person.prototype.name = "John";
+    // Person.prototype.age = 30;
+    // Person.prototype.arr = [1, 2, 3]
+    // Person.prototype.greet = function () {
+    //   console.log("Hi, my name is " + this.name + " and I am " + this.age + " years old.");
+    // };
+
+    // var person1 = new Person();
+    // var person2 = new Person();
+    // console.log(person1 === person2) // false
+    // console.log(person1.__proto__ === Person.prototype) // true
+    // person1.name = "person1"
+    // console.log(person1.name) // "person1"
+    // console.log(person2.name) // "John"
+    // // 存在一个引用类型如 Array 这样的值，那么所有的实例将共享一个对象，一个实例对引用类型值的改变会影响所有的实例。
+    // person1.arr.push(4) // 
+    // console.log(person1.arr) // [1, 2, 3, 4]
+    // console.log(person2.arr) // [1, 2, 3, 4]
+
+
+    // 构造函数和原型模式的结合
+    function Person(name, age) {
+      this.name = name;
+      this.age = age;
+    }
+
+    Person.prototype.greet = function () {
+      console.log("Hi, my name is " + this.name + " and I am " + this.age + " years old.");
+    };
+
+    var person1 = new Person("John", 30);
+    var person2 = new Person("Jane", 25);
+
+
+
+
+
+  </script>
+</body>
+
+</html>
