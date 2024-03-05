@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    // 数组本质也是一个对象
+    console.log(Object.getOwnPropertyDescriptors(arr));
+    // length: {
+    //   configurable: false
+    //   enumerable: false
+    //   value: 10
+    //   writable: true
+    // }
+    // TypeError: Cannot redefine property: length
+    // 所以不能这样对数组的length监听
+    // Object.defineProperty(arr, 'length', {
+    //   get() {
+    //     console.log('获取数组长度')
+    //     return arr['length']
+    //   },
+    //   set(val) {
+    //     console.log('设置数组长度')
+    //     arr['length'] = val
+    //   }
+    // })
+  </script>
+</body>
+
+</html>
