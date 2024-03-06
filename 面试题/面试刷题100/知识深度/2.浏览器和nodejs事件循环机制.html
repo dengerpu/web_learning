@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const p = document.createElement('p')
+    p.innerHTML = 'new paragraph'
+    document.body.appendChild(p)
+    const list = document.querySelector('p')
+    console.log('length----', list.length)
+
+    console.log('start')
+    setTimeout(() => {
+      const list = document.getElementsByTagName('p')
+      console.log('timeout----', list.length)
+      alert('阻塞')
+    })
+    Promise.resolve().then(() => {
+      const list = document.getElementsByTagName('p')
+      console.log('promise.then----', list.length)
+      alert('阻塞')
+    })
+    console.log('end')
+  </script>
+</body>
+
+</html>
