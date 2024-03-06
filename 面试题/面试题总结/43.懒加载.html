@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    img{
+      width: 300px;
+      height: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+  </div>
+  <script>
+    const documenFragment = document.createDocumentFragment();
+    for(let i = 0; i < 100; i++) {
+      let img = document.createElement('img');
+      img.src = './img/loading.gif';
+      img.setAttribute('data-src', './img/pic.jpeg')
+      documenFragment.appendChild(img);
+    }
+    document.querySelector('.container').appendChild(documenFragment);
+  </script>
+  <script>
+    let imgs = document.querySelectorAll('img');
+    function lazyload(){
+      console.log('滚动中')
+      let scrollTop = document.documentElement.scrollTop || document.body.scrollTop; // body滚动高度
+      let winHeight = window.innerHeight; // 可视窗口高度
+      for(let i = 0; i < imgs.length; i++) {
+        let img = imgs[i];
+        if(img.offsetTop < scrollTop + winHeight) {
+          let dataSrc = img.getAttribute('data-src');
+          img.src = dataSrc;
+        }
+      }
+    }
+    lazyload()
+    // window.addEventListener('scroll', lazyload);
+    window.onscroll = lazyload;
+  </script>
+</body>
+</html>
