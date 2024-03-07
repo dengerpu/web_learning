@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #box,
+    #box2 {
+      width: 100px;
+      height: 50px;
+      border: 3px solid #333;
+    }
+  </style>
+</head>
+
+<body>
+  <p>requestAnimationFrame</p>
+
+  <button id="btn1">change</button>
+  <div id="box"></div>
+  <div id="box2"></div>
+  <script>
+    document.getElementById('btn1').addEventListener('click', () => {
+      let curWidth = 100
+      let curBoxWidth = 100
+      const maxWidth = 400
+      let box = document.getElementById('box')
+      let box2 = document.getElementById('box2')
+      function addWidth() {
+        curWidth = curWidth + 3
+        box.style.width = `${curWidth}px`
+        if (curWidth < maxWidth) {
+          window.requestAnimationFrame(addWidth) // 时间不用自己控制
+        }
+      }
+      function addBox2Width() {
+        curBoxWidth += 3
+        box2.style.width = `${curBoxWidth}px`
+        if (curBoxWidth < maxWidth) {
+          window.requestIdleCallback(addBox2Width)
+        }
+      }
+      addWidth()
+      addBox2Width()
+    })
+  </script>
+  <script>
+    console.log('start')
+    requestAnimationFrame(() => {
+      console.log('requestAnimationFrame')
+    })
+    requestIdleCallback(() => {
+      console.log('requestIdleCallback')
+    })
+    setTimeout(() => {
+      console.log('setTimeout')
+    })
+    Promise.resolve().then(() => {
+        console.log('Promise')
+    })
+    console.log('end')
+    // start  end  Promise  setTimeout  requestAnimationFrame  requestIdleCallback
+  </script>
+</body>
+
+</html>
