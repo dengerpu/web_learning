@@ -1,17 +1,21 @@
 <template>
-  <div id="app">
-    <Parent/>
+  <div>
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </div>
+    <router-view/>
   </div>
 </template>
 
 <script>
-import Parent from './components/Parent.vue'
+// import Parent from './components/Parent.vue'
 
 export default {
   name: 'App',
-  components: {
-    Parent
-  }
+  // components: {
+  //   // Parent
+  // }
 }
 </script>
 
