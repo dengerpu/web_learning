@@ -3,6 +3,7 @@
     <div ref="div">父组件</div>
     <input type="text" v-model="msg">
     <div>{{newMsg}}</div>
+    <div :style="{height: height + 'px'}" class="test"></div>
     <hr>
     <child :msg="msg"></child>
   </div>
@@ -17,10 +18,12 @@ export default {
   },
   data() {
     return {
-      msg: '父组件的数据'
+      msg: '父组件的数据',
+      initHeight: 100
     }
   },
   beforeCreate() {
+    console.log(this.$options)
     console.log('父beforeCreate', this.msg)
   },
   created() {
@@ -30,6 +33,7 @@ export default {
     console.log('父beforeMount', this.$refs.div)
   },
   mounted() {
+    this.initHeight = 500
     console.log('父mounted', this.$refs.div)
   },
   beforeUpdate() {
@@ -56,6 +60,15 @@ export default {
   computed: {
     newMsg() {
       return this.msg + 'computed'
+    },
+    height: {
+      get() {
+        return this.initHeight
+      },
+      set(val) {
+        console.log('set发生改动', val)
+        this.initHeight = val
+      }
     }
   },
   watch: {
@@ -68,3 +81,10 @@ export default {
   }
 }
 </script>
+<style scoped>
+.test {
+  width: 100px;
+  height: 100px;
+  border: 1px solid red;
+}
+</style>
