@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #box1 {
+      border: 1px solid #ccc;
+      width: 100px;
+      white-space: nowrap; /*换行*/
+      overflow: hidden; /*隐藏*/
+      text-overflow: ellipsis; /* 超出隐藏 */
+    }
+    #box2 {
+      border: 1px solid #ccc;
+      width: 100px;
+      overflow: hidden;
+      display: -webkit-box; /*将对象作为弹性伸缩盒子模型显示*/
+      -webkit-box-orient: vertical; /*设置或检索伸缩盒对象的子元素的排列方式*/
+      -webkit-line-clamp: 3; /*显示的行数，超出部分用...表示*/
+    }
+
+  </style>
+</head>
+<body>
+  <div id="box1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias id quisquam possimus? Modi, adipisci recusandae nobis impedit laborum iure illo aliquid explicabo, iste ut et incidunt, quam id fuga excepturi.</div>
+  <div id="box2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto nam, officiis blanditiis natus magni, nemo atque repellat facere, asperiores illo adipisci iste rem sunt qui a est nisi laborum deserunt.</div>
+</body>
+</html>
