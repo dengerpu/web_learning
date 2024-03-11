@@ -15,5 +15,6 @@
 // import './03-write-code/03.get-types'
 // import './03-write-code/04.new'
 // import './03-write-code/05.dom-traverse'
-import './03-write-code/06.LazyMan'
+// import './03-write-code/06.LazyMan'
+import './03-write-code/09.bind'
 
