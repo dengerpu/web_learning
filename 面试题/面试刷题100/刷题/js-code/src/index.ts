@@ -13,5 +13,6 @@
 // import './03-write-code/01.array-flatten'
 // import './03-write-code/02.array-flatten-deep'
 // import './03-write-code/03.get-types'
-import './03-write-code/04.new'
+// import './03-write-code/04.new'
+import './03-write-code/05.dom-traverse'
 
