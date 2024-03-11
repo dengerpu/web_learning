@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .viewport {
+      width: 300px;
+      /* height: 400px; */
+      background-color: #ccc;
+      position: relative;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      overflow-y: scroll;
+    }
+
+    .scrollBar {
+      /* height: 3000px; */
+    }
+
+    .listBox {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .row {
+      height: var(--rowHeight);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 用户视口: 超出部分滚动 -->
+    <div class="viewport" ref="viewport" :style="{'--rowHeight': rowHeight + 'px'}" @scroll="onScroll">
+      <!-- 子元素超出父元素高度 -->
+      <div class="scrollBar" ref="scrollBar"></div>
+      <!-- 列表区域 -->
+      <div class="listBox" ref="list">
+        <div class="row" v-for="item in showList" :key="item.id">
+          {{item.title}} - {{item.content}}
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <script>
+    function throttle(fun, delay = 100) {
+      let timer = 0
+      return function(...args) {
+        if(timer) return
+        timer = setTimeout(() => {
+          fun.apply(this, args)
+          clearTimeout(timer)
+          timer = 0
+        }, delay)
+      }
+    }
+  </script>
+  <script>
+    let total = 100000;
+    const bigData = new Array(total).fill(null).map((item, i) => {
+      return {
+        id: i + 1,
+        title: `item${i + 1}`,
+        content: `content${i + 1}`
+      }
+    })
+    // 递归对象,处理所有的属性 object.defineProperty
+    // 不需要修改,节约性能object.defineProperty
+    // 判断是否冻结object.isFrozen(obj)
+    new Vue({
+      el: '#app',
+      data: {
+        msg: 123,
+        list: Object.freeze(bigData),
+        start: 0,
+        end: 20,
+        viewCount: 20, // 显示多少条数据
+        rowHeight: 20 // 行高
+      },
+      computed: {
+        showList() {
+          return this.list.slice(this.start, this.end)
+        }
+      },
+      mounted() {
+        this.$refs.viewport.style.height = this.viewCount * this.rowHeight + 'px';
+        this.$refs.scrollBar.style.height = this.list.length * this.rowHeight + 'px';
+      },
+      methods: {
+        onScroll: throttle(function() {
+          let offsetTop = this.$refs.viewport.scrollTop;
+          this.start = Math.floor(offsetTop / this.rowHeight);
+          this.end = this.start + this.viewCount;
+          this.$refs.list.style.transform = `translateY(${offsetTop}px)`;
+          console.log(this.start, this.end, '滚动了')
+        })
+      },
+    })
+  </script>
+</body>
+
+</html>
