@@ -17,7 +17,8 @@
 // import './03-write-code/05.dom-traverse'
 // import './03-write-code/06.LazyMan'
 // import './03-write-code/07.curry'
-import './03-write-code/08.instanceof'
+// import './03-write-code/08.instanceof'
 // import './03-write-code/09.bind'
 // import './03-write-code/09.apply-and-call'
+import './03-write-code/10.eventbus'
 

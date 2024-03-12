@@ -1,8 +1,3 @@
-/**
- * @description 自定义 instanceof test
- * @author 双越老师
- */
-
 import { myInstanceof } from './08.instanceof'
 
 describe('自定义 instanceof', () => {
