@@ -4,18 +4,19 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
+    <Parent></Parent>
     <router-view/>
   </div>
 </template>
 
 <script>
-// import Parent from './components/Parent.vue'
+import Parent from './components/Parent.vue'
 
 export default {
   name: 'App',
-  // components: {
-  //   // Parent
-  // }
+  components: {
+    Parent
+  }
 }
 </script>
 
