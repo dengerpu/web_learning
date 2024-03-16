@@ -1,0 +1,11 @@
+POST /upload_single HTTP/1.1
+Host: localhost:8888
+Content-Type: multipart/form-data; boundary=aaa
+
+--aaa
+Content-Disposition: form-data; name="file"; filename="logo.png"
+Content-Type: image/png
+
+<./logo.png
+
+--aaa--
