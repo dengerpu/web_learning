@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      height: 100%;
+      position: relative;
+    }
+    .header, .footer {
+      height: 60px;
+      background-color: azure;
+    }
+    .footer {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      bottom: 0;
+    }
+    .container {
+      position: absolute;
+      width: 100%;
+      top: 60px;
+      bottom: 60px;
+      background-color: ivory;
+    }
+    .center-container {
+      position: absolute;
+      left: 100px;
+      right: 100px;
+      height: 100%;
+      background-color: rebeccapurple;
+    }
+    .left-container, .right-container {
+      width: 100px;
+      background-color: grey;
+      height: 100%;
+      position: absolute;
+    }
+    .right-container {
+      right: 0px;
+    }
+  </style>
+</head>
+<body>
+    <!-- html标签语义化 -->
+    <header class="header">头部</header>
+    <section class="container">
+      <aside class="left-container"></aside>
+      <section class="center-container"></section>
+      <aside class="right-container"></aside>
+    </section>
+    <footer class="footer">底部</footer>
+</body>
+</html>
