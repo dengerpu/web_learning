@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 先看这个函数的返回值
+    // let a = setTimeout(() => (1, console.log(1)), 1000)
+    // setTimeout返回一个定时器标识符（timer identifier）number类型
+    // let b = setTimeout(1000)
+    // setTimeout(callback, delay, param1, param2, ...);
+    // callback：要执行的回调函数。
+    // delay：延迟时间，以毫秒为单位。
+    // param1, param2, ...：可选的附加参数，它们会被传递给回调函数作为参数。
+    // setTimeout(3000); // 将会在 3000 毫秒后执行
+    // setTimeout("3000"); // 同样也会在 3000 毫秒后执行
+    // setTimeout("hello", 2000); // 在 2000 毫秒后执行，因为 "hello" 会被忽略
+    // setTimeout(-1000); // 立即执行，因为负数会被当作 0 处理
+    // console.log(a)
+    // console.log(b)
+    // setTimeout(function (i) {
+    //   console.log("params:" + i)
+    // },100, 1)
+    let promise = new Promise((resolve, reject) => {
+      // return setTimeout(() => resolve(1, console.log(1)), 1000)
+      resolve(1, console.log(1))
+      // 1作为返回值被返回， 第二个参数被忽略
+    })
+    promise.then((...res) => {
+      console.log(res) // 只能接收到1个
+    })
+    console.log(promise)
+  </script>
+</body>
+
+</html>
