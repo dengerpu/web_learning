@@ -1,0 +1,31 @@
+<style>
+  #container p { color: blue; }
+  div #p1, div #p2 { color: red; }
+  #container p.yellow-text { color: yellow; font-weight: bold; }
+  div p.green-text { color: green; font-weight: bold; }
+  div p { color: gray; }
+
+  button {
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+</style>
+
+<div id="container">
+  <!-- yellow 字体加粗-->
+  <p id="p1" class="yellow-text">100</p>
+  <!-- red 字体加粗-->
+  <p id="p2" class="green-text">200</p>
+  <!-- blue -->
+  <p id="p3">300</p>
+
+  <!-- 测试buuton按钮禁用-css -->
+  <button id="button">通过css禁用的button按钮</button>
+</div>
+
+<script>
+  const button = document.getElementById('button');
+  button.addEventListener('click', function() {
+    console.log('按钮被点击了');
+  })
+</script>
