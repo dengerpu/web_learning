@@ -1,5 +1,8 @@
 <template>
-  <DynamicFormItem :formState="item1"></DynamicFormItem>
+  <el-form :model="ruleForm" :rules="rules">
+    <DynamicFormItem :formState="item1"></DynamicFormItem>
+  </el-form>
+  
 </template>
 
 <script lang="ts">
