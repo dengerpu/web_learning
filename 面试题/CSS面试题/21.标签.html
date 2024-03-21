@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      width: 100px;
+      height: 100px;
+    }
+    .test:hover {
+      width: 400px;
+      background-color: bisque;
+      transition: width 0.3s;
+    }
+    .test2 {
+      width: 400px;
+      background-color: bisque;
+      animation: animate 1s ease-in-out;
+    }
+    @keyframes animate {
+      0% {
+        background-color: bisque;
+      }
+      50% {
+        background-color: blue;
+      }
+      100% {
+        background-color: red;
+      }
+    }
+    li {
+      letter-spacing:normal
+    }
+  </style>
+</head>
+<body>
+  <strong>abc</strong>
+  <b>123</b>
+  <h1 style="display: none;">122112122</h1>
+  <h2>1111</h2>
+  <i>1111</i>
+  <em>1111</em>
+
+  <span style="margin: 20px; padding: 20px; background-color: beige;">测试行内元素 padding</span>
+
+  <div style="display: none;">隐藏元素方法之一(不会保留原有空间)</div>
+  <div style="visibility: hidden;">隐藏元素方法之一(会保留原有空间)</div>
+  2222
+
+  <div style="opacity: 0;">占据原来的位置</div>
+  333
+  <div style="transform: scale(0,0);">缩小为0倍</div>
+  444
+  <div style="background-color: red; -webkit-background-clip: text">测试文字</div>
+
+  <!-- 过渡属性 -->
+  <div class="test">
+    测试
+  </div>
+  <!-- 动画 -->
+  <div class="test2"></div>
+
+  <ul style="list-style: none; padding-left: 0; letter-spacing:normal;">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+  </ul>
+</body>
+</html>
