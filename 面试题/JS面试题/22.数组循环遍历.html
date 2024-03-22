@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // const arr = new Array(5)
+    // // 什么也不会输出
+    // arr.forEach((item, index) => {
+    //   console.log(item, index)
+    // })
+
+    // let arr = []
+    // arr[2] = 2
+    // arr[3] = undefined
+    // arr[4] = null
+    // arr[5] = 5
+
+    // console.log(arr) // empty empty 2 undefined null  5 length: 6
+    // arr.forEach(item => {
+    //   console.log(item)
+    // })
+    // // 只输出2 undefined null  5
+
+    // let arr = [1,2,3,4,5]
+    // arr.forEach((item, index) => {
+    //   console.log('其实我还是执行了') // 执行5次
+    //   if(index >= 2) {
+    //     return
+    //   }
+    //   console.log(item) // 输出 1 2
+    // })
+    // arr.forEach((item, index) => {
+    //   if(index >= 2) {
+    //     // break // 这里直接会报错
+    //     // continue
+    //   }
+    //   console.log(item) // Illegal break statement
+    // })
+
+    // function abc(index) {
+    //   if(index === 1) {
+    //     // break // 报错
+    //     // continue // 报错
+    //   }
+    // }
+
+    let arr = [1,2,3,4,5]
+    try {
+      arr.forEach((item, index) => {
+        console.log(item) // 输出 1 2
+        if(index >= 2) {
+          throw new Error('console.error();')
+        }
+      })
+    } catch(e) {
+      // console.log(e)
+    }
+
+
+
+  </script>
+</body>
+</html>
