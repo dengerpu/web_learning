@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    :root {
+      --color: black;
+      --bgColor: red;
+    }
+    [data-theme="abc"] {
+      --color: white;
+      --bgColor: black; 
+    }
+    div {
+      width: 100px;
+      height: 100px;
+      color: var(--color);
+      background-color: var(--bgColor);
+    }
+  </style>
+</head>
+<body>
+  <button id="themeToggle">点击切换</button>
+  <div>测试</div>
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+      const body = document.body;
+      if (body.getAttribute('data-theme') === 'abc') {
+        body.removeAttribute('data-theme');
+      } else {
+        body.setAttribute('data-theme', 'abc');
+      }
+    });
+  </script>
+</body>
+</html>
