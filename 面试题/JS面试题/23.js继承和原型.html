@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    class BaseType {
+      constructor(title, icon) {
+        this.title = title
+        this.icon = icon
+      }
+      isDisabled() {
+        return false
+      }
+      exec() {}
+    }
+    class Button extends BaseType {
+      constructor(title, icon) {
+        super(title, icon)
+      }
+      exec() {
+        console.log('hello')
+      }  
+    }
+    class Select extends BaseType {
+      constructor(title, icon) {
+        super(title, icon)
+      }
+      exec() {
+        return ['item1', 'item2', 'item3']
+      }  
+    }
+    class Modal extends BaseType {
+      constructor(title, icon) {
+        super(title, icon)
+      }
+      exec() {
+        const div = document.createElement('div')
+        div.innerText = 'modal'
+        return div
+      }
+    }
+    let button = new Button()
+    let select = new Select()
+    let modal = new Modal()
+    button.exec()
+    console.log(select.exec())
+    console.log(modal.exec())
+  </script>
+</body>
+</html>
