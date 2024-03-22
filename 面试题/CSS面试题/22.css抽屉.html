@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      height: 100%;
+    }
+    .drawer_contsiner {
+      width: 300px;
+      height: 100%;
+      display: none;
+      position: absolute;
+      right: 0px;
+      background-color: grey;
+      transition: width 0.5s ease;
+    }
+  </style>
+</head>
+<body>
+  <div class="drawer_contsiner">
+    抽屉
+  </div>
+  <script>
+    const drawer = document.querySelector('.drawer_contsiner')
+    setTimeout(() => {
+      drawer.style.display = 'block'
+    }, 1000)
+    setTimeout(() => {
+      drawer.style.display = 'none'
+    }, 3000)
+  </script>
+</body>
+</html>
