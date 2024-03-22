@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .parent {
+      width: 100px;
+      height: 100px;
+      border: 1px solid rebeccapurple;
+      text-align: center;
+    }
+    span {
+      font-size: 16px;
+      line-height: 100px;
+    }
+    .parent button {
+      line-height: 100px;
+    }
+    .divParent {
+      width: 300px;
+      height: 300px;
+      margin-top: 5px;
+      background-color: antiquewhite;
+    }
+    .divChild {
+      width: 100px;
+      height: 100px;
+      background-color: aqua;
+    }
+  </style>
+</head>
+<body>
+  <!-- 行内元素 -->
+  <div class="parent">
+    <!-- img,a,b等也都是行内元素 -->
+    <span>center</span>
+  </div>
+  <!-- 行内快元素 -->
+  <div class="parent">
+    <!-- input和button是行内快元素 -->
+    <!-- <input type="text"> -->
+    <button>按钮</button>
+  </div>
+
+  <!-- margin: auto 只能水平居中，因为块级元素宽度默认是占据父元素整个宽度的，左右设置为margin时会自动分配剩余空间 -->
+  <div style="width: 300px; height: 300px; background-color: antiquewhite;">
+    <div style="width: 100px; height: 100px; background-color: azure; margin: auto;"></div>
+  </div>
+
+  <div class="divParent" style="display: flex; justify-content: center; align-items: center;">
+    <!-- <div class="divChild"></div> -->
+    <span>111</span>
+  </div>
+
+  <div class="divParent" style="position: relative;">
+    <!-- margin里面如果单位是百分比是相当于父元素的 -->
+    <!-- <div class="divChild" style="position: absolute; left: 50%; top: 50%; margin-left: -50px; margin-top: -50px;"></div> -->
+    <div class="divChild" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);"></div>
+    <!-- <span>111</span> -->
+  </div>
+
+  <div class="divParent" style="position: relative;">
+    <div class="divChild" style="position: absolute; left: 0; top: 0; bottom: 0; right: 0; margin: auto;"></div>
+    <!-- <span>111</span> -->
+  </div>
+
+  <div class="divParent" style="display: grid; place-items: center;">
+    <!-- <div class="divChild"></div> -->
+    <span>111</span>
+  </div>
+
+
+
+
+</body>
+</html>
