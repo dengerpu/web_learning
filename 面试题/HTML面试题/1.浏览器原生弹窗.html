@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #dialog {
+      border-radius: 5px;
+    }
+    #dialog::backdrop {
+      background-color: rgb(229, 229, 229, 0.5);
+    }
+  </style>
+</head>
+<body>
+    <button id="btn" onclick="dialog.showModal()">弹窗</button>
+    <dialog id="dialog">
+      <div class="content">弹窗内容</div>
+      <button onclick="dialog.close()">关闭</button>
+    </dialog>
+</body>
+</html>
