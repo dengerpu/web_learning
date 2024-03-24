@@ -23,5 +23,6 @@
 // import './03-write-code/10.eventbus'
 // import './03-write-code/12.clone-deep'
 // import './04-analysis/arr-to-tree'
-import './04-analysis/tree-to-arr'
+// import './04-analysis/tree-to-arr'
+import './03-write-code/11.LRU'
 
