@@ -36,7 +36,7 @@
  * @param map 
  * @returns 
  */
-function cloneDeep(obj: any, map = new WeakMap()) {
+export function cloneDeep(obj: any, map = new WeakMap()) {
   if(typeof obj !== 'object' || obj == null) return obj
   // 避免循环引用
   const objFromMap = map.get(obj)
