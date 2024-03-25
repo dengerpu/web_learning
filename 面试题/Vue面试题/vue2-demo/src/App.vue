@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <test></test>
     <TqlDemo></TqlDemo>
     <ComputedDemo></ComputedDemo>
     <WatchDemo></WatchDemo>
@@ -30,6 +31,7 @@
   </div>
 </template>
 <script>
+import Test from './views/test.vue'
 import ClassDemo from './views/基本使用/ClassDemo.vue'
 import ComputedDemo from './views/基本使用/ComputedDemo.vue'
 import ConditionDemo from './views/基本使用/ConditionDemo.vue'
@@ -63,7 +65,8 @@ export default {
     CustomVModel,
     NextTick,
     SlotScope,
-    Mixins
+    Mixins,
+    Test
   },
   data() {
     return {
