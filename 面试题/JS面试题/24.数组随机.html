@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let arr = [1,2,3,4,5,6,7,8,9,10]
+    // 随机洗牌算法
+    function shuffleFisherYates(arr) {
+      for(let i = arr.length - 1; i >= 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1))
+        console.log(i, j, arr[i], arr[j])
+        // 利用解构赋值来交换元素
+        let temp = arr[i]
+        arr[i] = arr[j]
+        arr[j] = temp
+        // [arr[i], arr[j]] = [arr[j], arr[i]]; // 交换元素
+      }
+      return arr
+    }
+    // 随机打乱数组
+    function shuffle(arr) {
+      let res = arr
+      return res.sort(() => Math.random() - 0.5)
+    }
+    console.log(shuffleFisherYates(arr))
+    console.log(shuffle(arr))
+    
+    
+  </script>
+</body>
+</html>
