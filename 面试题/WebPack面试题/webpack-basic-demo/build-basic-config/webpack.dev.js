@@ -12,6 +12,11 @@ module.exports = merge(webpackCommonConf, {
       {
         test: /\.(png|jpg|jpeg|gif)$/,
         use: 'file-loader'
+      },
+      // 自定义loader解析txt文件
+      {
+        test: /\.txt$/,
+        use: './loader/uppercase-loader.js'
       }
     ]
   },

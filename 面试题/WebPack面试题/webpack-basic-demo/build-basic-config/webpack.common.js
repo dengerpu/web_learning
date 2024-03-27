@@ -26,6 +26,11 @@ module.exports = {
       {
         test: /\.less$/,
         use: ['style-loader', 'css-loader', 'less-loader']
+      },
+      // 自定义loader解析txt文件
+      {
+        test: /\.txt$/,
+        use: './loader/uppercase-loader.js'
       }
     ]
   },

@@ -15,7 +15,7 @@ console.log(_.each)
 
 
 import { sum } from './math'
-const sumRes = sum(10, 20)
+const sumRes = sum(10, 30)
 console.log('sumRes', sumRes)
 
 // 引入图片
@@ -46,3 +46,7 @@ import 'moment/locale/zh-cn' // 手动引入中文语言包
 moment.locale('zh-cn')
 console.log('local', moment.locale())
 console.log('date', moment().format('ll'))
+
+
+// 引入自定义loader
+import "./test.txt"
