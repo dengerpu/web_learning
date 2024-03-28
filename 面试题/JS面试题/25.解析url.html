@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function parseURL(url) {
+      var parser = document.createElement('a');
+      parser.href = url;
+    
+      var params = {};
+      var queryString = parser.search.substring(1);
+      var pairs = queryString.split('&');
+
+      for (var i = 0; i < pairs.length; i++) {
+        var pair = pairs[i].split('=');
+        var key = decodeURIComponent(pair[0]);
+        var value = decodeURIComponent(pair[1] || '');
+
+        if (params[key]) {
+          if (Array.isArray(params[key])) {
+            params[key].push(value);
+          } else {
+            params[key] = [params[key], value];
+          }
+        } else {
+          params[key] = value;
+        }
+      }
+
+      return params;
+    }
+
+    // 示例用法
+    var url = 'https://www.example.com/path?param1=value1&param2=value2&param2=value3&param3=%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95';
+    var parsedParams = parseURL(url);
+    console.log(parsedParams);
+
+  </script>
+</body>
+
+</html>

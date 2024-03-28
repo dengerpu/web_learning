@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let n = 5;
+    let arr = [8, -4, 2, -6, -5]
+    // 选取偶数区间除以2，求和的最大值
+    function maxSum(arr) {
+      let sum = 0;
+      let result = []
+      for (let i = 0; i < arr.length; i++) {
+        sum += arr[i];
+        if (i % 2 === 0) {
+          for (let j = i + 2; j < arr.length; j++) {
+            sum += Math.sum(arr.slice(i, j + 1));
+            result.push(sum);
+            sum = 0;
+          }
+        }
+      }
+      console.log(result)
+    }
+  </script>
+</body>
+
+</html>
