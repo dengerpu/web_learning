@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let tree = {
+      value: 1,
+      children: [
+        {
+          value: 11,
+          children: [{
+            value: 111
+          }]
+        },
+        {
+          value: 12,
+          children: [{
+            value: 121
+          }, {
+            value: 122
+          }]
+        }
+      ]
+    }
+
+    function treeToString(arr, path = '', result = []) {
+      // 判断是不是第一层
+      let currentPath = path ? `${path}-${arr.value}` : `${arr.value}`;
+      // 如果存在children，则递归遍历
+      if (arr.children && arr.children.length > 0) {
+        arr.children.forEach(child => {
+          treeToString(child, currentPath, result);
+        })
+      } else {
+        result.push(currentPath);
+      }
+      return result
+    }
+    console.log(treeToString(tree))
+  </script>
+</body>
+
+</html>
