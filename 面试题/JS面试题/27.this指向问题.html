@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var name = "outer"
+    function K() {
+      let name = "k"
+      let innerObj = {
+        print: function() {
+          console.log(name)
+          console.log(this.name)
+        }
+      }
+      return innerObj
+    }
+    let o = K()
+    o.print() // k undefined
+    let p = o.print
+    p() // k outer
+  </script>
+</body>
+</html>
