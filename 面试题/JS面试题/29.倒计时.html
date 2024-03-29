@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1 id="countdown"></h1>
+  <h1 id="countdown2"></h1>
+  <h1 id="countdown3"></h1>
+  <script>
+    // 实现一个倒计时
+    function countdown(targetDate) {
+      console.log(targetDate)
+      // 获取当前时间
+      const now = Date.now();
+      // 计算剩余时间
+      const difference = targetDate - now;
+      console.log(difference)
+      if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference / (1000 * 60 * 60)) % 60);
+        const minutes = Math.floor((difference / (1000 * 60)) % 60);
+        const seconds = Math.floor((difference / 1000) % 60);
+        document.getElementById('countdown').innerHTML = `
+            <span>${days.toString().padStart(2, '0')}:</span>
+            <span>${hours.toString().padStart(2, '0')}:</span>
+            <span>${minutes.toString().padStart(2, '0')}:</span>
+            <span>${seconds.toString().padStart(2, '0')}</span>
+        `;
+      } else {
+        document.getElementById('countdown').innerHTML = '倒计时结束';
+      }
+    }
+    setInterval(() => {
+      countdown(new Date('2024-03-30 00:00:00'))
+    }, 1000)
+
+    function countdown2(targetDate) {
+      frameId = requestAnimationFrame(startCurDown);
+      function startCurDown() {
+        console.log(targetDate)
+        // 获取当前时间
+        const now = Date.now();
+        // 计算剩余时间
+        const difference = targetDate - now;
+        let frameId;
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference / (1000 * 60 * 60)) % 60);
+        const minutes = Math.floor((difference / (1000 * 60)) % 60);
+        const seconds = Math.floor((difference / 1000) % 60);
+        console.log("countdown2", difference)
+        if (difference > 0) {
+          document.getElementById('countdown2').innerHTML = `
+            <span>${days.toString().padStart(2, '0')}:</span>
+            <span>${hours.toString().padStart(2, '0')}:</span>
+            <span>${minutes.toString().padStart(2, '0')}:</span>
+            <span>${seconds.toString().padStart(2, '0')}</span>
+        `;
+          frameId = requestAnimationFrame(startCurDown);
+        } else {
+          cancelAnimationFrame(frameId)
+          document.getElementById('countdown2').innerHTML = '倒计时结束';
+        }
+      }
+    }
+    countdown2(new Date('2024-03-30 00:00:00'))
+
+    function countdown3(targetDate) {
+      let timer;
+      function startCurDown() {
+        console.log(targetDate)
+        // 获取当前时间
+        const now = Date.now();
+        // 计算剩余时间
+        const difference = targetDate - now;
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference / (1000 * 60 * 60)) % 60);
+        const minutes = Math.floor((difference / (1000 * 60)) % 60);
+        const seconds = Math.floor((difference / 1000) % 60);
+        console.log("countdown3", difference)
+        if (difference > 0) {
+          document.getElementById('countdown3').innerHTML = `
+            <span>${days.toString().padStart(2, '0')}:</span>
+            <span>${hours.toString().padStart(2, '0')}:</span>
+            <span>${minutes.toString().padStart(2, '0')}:</span>
+            <span>${seconds.toString().padStart(2, '0')}</span>
+        `;
+          // 使用setTimeout递归调用自身，延迟1秒
+          timer = setTimeout(startCurDown, 1000);
+        } else {
+          clearTimeout(timer);
+          document.getElementById('countdown3').innerHTML = '倒计时结束';
+        }
+      }
+      startCurDown()
+    }
+    countdown3(new Date('2024-03-30 00:00:00'))
+
+
+  </script>
+</body>
+
+</html>
