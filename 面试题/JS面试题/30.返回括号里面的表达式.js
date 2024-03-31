@@ -20,5 +20,5 @@ function extractValue(str) {
   }
   return result;
 }
-console.log(extractValue('((2+3)*(2-3))'))
-console.log(extractValue('((2+3))'))
+console.log(extractValue('((2+3)*(2-3))')) // [ '2+3', '2-3', '(2+3)*(2-3)' ]
+console.log(extractValue('((2+3))')) // [ '2+3', '(2+3)' ]
