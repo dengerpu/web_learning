@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var message = "Global Messgae";
+    debugger
+
+    function foo() {
+      console.log(message)
+    }
+    foo() // Global Messgae
+
+    var obj = {
+      name: "obj",
+      bar: function() {
+        var message = "bar message"
+        foo()
+      }
+    }
+    obj.bar() // Global Messgae
+  </script>
+</body>
+</html>
