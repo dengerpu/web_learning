@@ -6,6 +6,14 @@
   <title>Document</title>
 </head>
 <body>
-  <script src="./32.Promise串行执行.js"></script>
+  <!-- <script src="./32.Promise串行执行.js"></script> -->
+  <div>1</div>
+  <script>
+    let div1 = document.getElementsByTagName('div')[0];
+    div1.innerText = 'time.tme'
+    let div2 = document.getElementsByTagName('div')[1];
+    div2.innerText = 'time.tme.com' // div2是undefined，所以这里会报错
+  </script>
+  <div>2</div>
 </body>
 </html>
