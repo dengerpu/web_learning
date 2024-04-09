@@ -44,5 +44,44 @@
     }
     document.addEventListener(vEvent, visibilityChanged)
 </script>
+<script>
+    // 测试回流（布局）变化
+    // 获取所有的图片
+    // const imgs = document.getElementsByClassName('MuiCardMedia-root')
+    // console.log(imgs)
+    // const update = () => {
+    //     imgs[0].style.width = '800px'
+    // }
+    // window.addEventListener('load', update)
+
+    // 修改卡片宽度的方法
+    // const update = (timestamp) => {
+    //     for(let i = 0; i < imgs.length; i++) {
+    //         imgs[i].style.width = ((Math.sin(imgs[i].offsetTop + timestamp / 1000) + 1) * 500) + 'px'
+    //     }
+    //     window.requestAnimationFrame(update)
+    // }
+    // window.addEventListener('load', update)
+</script>
+
+<script>
+    // 高频事件防抖
+    const imgs = document.getElementsByClassName('MuiCardMedia-root')
+    // 修改卡片宽度的方法
+    const changeWidth = (pos) => {
+        for(let i = 0; i < imgs.length; i++) {
+            imgs[i].style.width = ((Math.sin(imgs[i].offsetTop + pos / 1000) + 1) * 500) + 'px'
+        }
+    }
+    let ticking = false; // 防抖保证一帧只执行一次
+    window.addEventListener('pointermove', (e) => {
+        let pos = e.clientX;
+        if(ticking) return 
+        window.requestAnimationFrame(() => {
+            changeWidth(pos)
+            ticking = false
+        })
+    })
+</script>
 </body>
 </html>
