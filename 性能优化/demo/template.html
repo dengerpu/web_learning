@@ -26,5 +26,23 @@
         console.log("tti: ", tti)
     });
 </script>
+<script>
+    // 监听页面切换事件
+    let vEvent = 'visibilitychange'
+    if (document.webkitHidden !== undefined) {
+        // webkit事件
+        vEvent = 'webkitvisibilitychange'
+    }
+    function visibilityChanged() {
+        // 页面不可见
+        if(document.hidden || document.webkitHidden) {
+            console.log('web page is hidden')
+        } else {
+            // 页面可见
+            console.log('web page is visibile')
+        }
+    }
+    document.addEventListener(vEvent, visibilityChanged)
+</script>
 </body>
 </html>
