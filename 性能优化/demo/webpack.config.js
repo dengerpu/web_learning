@@ -12,6 +12,7 @@ module.exports = {
     context: __dirname,
     entry: {
         app: './src/index.jsx',
+        test: './src/test.js',
     },
     output: {
         path: `${__dirname}/build`,
