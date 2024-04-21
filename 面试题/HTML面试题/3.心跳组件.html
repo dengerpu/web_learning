@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+    let timer = 0;
+    function heartBeat() {
+      console.log('心跳');
+      timer = setTimeout(heartBeat, 1000);
+    }
+    timer = setTimeout(heartBeat, 1000)
+    // 页面关闭销毁
+    window.onunload = function() {
+      clearTimeout(timer);
+    }
+  </script>
+</body>
+</html>
