@@ -21,3 +21,17 @@ var postorderTraversal = function(root) {
     dfs(root);
     return res;
 }
+
+// 迭代法
+var postorderTraversal = function(root) {
+    if (root === null) return [];
+    let stack = [root];
+    let res = [];
+    while (stack.length) {
+      let top = stack.pop();
+      res.push(top.val);
+      if (top.left) stack.push(top.left);
+      if (top.right) stack.push(top.right);
+    }
+    return res.reverse();
+}
