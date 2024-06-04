@@ -26,3 +26,22 @@ var prevOrder = function(root, list) {
   prevOrder(root.left, list);
   prevOrder(root.right, list);
 }
+
+// 非递归方式
+var preOrder = function(root) {
+  if (root === null) return [];
+  let stack =[];
+  stack.push(root);
+  let res = []
+  while(stack.length > 0) {
+    let top = stack.pop();
+    res.push(top.val);
+    if (top.right !== null) {
+      stack.push(top.right);
+    }
+    if (top.left !== null) {
+      stack.push(top.left);
+    }
+  }
+  return res;
+}
