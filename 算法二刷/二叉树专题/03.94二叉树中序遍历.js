@@ -21,3 +21,23 @@ var inorderTraversal = function(root) {
     dfs(root);
     return res;
 }
+// 迭代
+var inorderTraversal = function(root) {
+    let res = [];
+    if(root == null) return [];
+    let stack = [root];
+    while(stack.length) {
+        let top = stack[stack.length - 1];
+        while(top.left) {
+            stack.push(top.left);
+            top = top.left;
+        }
+        top = stack.pop();
+        res.push(top.val);
+        while(top.right) {
+            stack.push(top.right);
+            top = top.right;
+        }
+    }
+    return res;
+}
