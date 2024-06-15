@@ -27,3 +27,24 @@ var binarySearch = function (arr, target) {
   }
   return -1;
 }
+
+/**
+ * @param {number[][]} matrix
+ * @param {number} target
+ * @return {boolean}
+ */
+var searchMatrix = function(matrix, target) {
+  // 从右上角开始搜索
+  let m = matrix.length, n = matrix[0].length;
+  let x = 0, y = n - 1;
+  while(x < m && y >= 0) {
+      if(matrix[x][y] === target) {
+          return true;
+      } else if(matrix[x][y] > target) {
+          y--;
+      } else {
+          x++;
+      }
+  }
+  return false;
+};
