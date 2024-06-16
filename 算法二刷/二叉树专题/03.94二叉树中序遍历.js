@@ -34,10 +34,8 @@ var inorderTraversal = function(root) {
         }
         top = stack.pop();
         res.push(top.val);
-        while(top.right) {
-            stack.push(top.right);
-            top = top.right;
-        }
+        // 处理右子树
+        top = top.right;
     }
     return res;
 }
