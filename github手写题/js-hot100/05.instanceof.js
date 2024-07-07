@@ -17,4 +17,4 @@ function myInstanceof(left, right) {
     }
     return false
 };
-console.log(myInstanceof([], {}))
+console.log(myInstanceof([], Array))
