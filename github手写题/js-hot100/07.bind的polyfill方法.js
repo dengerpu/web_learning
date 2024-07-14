@@ -1,5 +1,6 @@
 // bind 的polyfill方法
 // bind方法返回一个函数  
+// 参考链接： https://blog.csdn.net/haishangfeie/article/details/79913698
  Function.prototype.bind2 = function(oThis) {
     if(typeof this !== 'function') {
         throw new TypeError('不是一个函数');
