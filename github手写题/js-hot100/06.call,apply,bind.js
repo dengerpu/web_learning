@@ -14,6 +14,7 @@ Function.prototype.apply2 = function(context, args) {
     context._fn = this;
     let res = context._fn(...args);
     delete context._fn;
+    
     return res;
 }
 
@@ -27,8 +28,6 @@ Function.prototype.bind2 = function(context, ...args1) {
         delete context._fn;
         return res;
     }
-
-
 }
 
 var fun = function() {
