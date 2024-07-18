@@ -5,13 +5,13 @@
  */
 var searchInsert = function(nums, target) {
     let left = 0, right = nums.length - 1;
-    let ans = n;
+    let ans = nums.length;
     while(left <= right) {
         let mid = Math.floor((left + right) / 2);
         if(nums[mid] >= target) {
+            ans = mid;
             right = mid - 1;
         } else {
-            ans = mid;
             left = mid + 1;
         }
     }
