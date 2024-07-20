@@ -185,3 +185,5 @@ const promise = new myPromise((resolve, reject) => {
 promise.then((data) => {
     console.log(data);
 })
+
+module.exports = myPromise;
