@@ -85,6 +85,103 @@ class myPromise {
      * @param {*} param0 
      */
     _runOneHanler({ executor, state, resolve, reject }) {
+        runMicroTask(() => {
+            if(this._state !== state) {
+                // 状态不一致，不处理
+                return;
+            }
+            if(typeof executor !== "function") {
+                this._state === FULFILLED ? resolve(this._value) : reject(this._value);
+                return;
+            }
+            try {
+                const result = executor(this._value);
+                if(isPromise(result)) {
+                    result.then(resolve, reject);
+                } else {
+                    resolve(result);
+                }
+            } catch(error) {
+                reject(error);
+                console.error(error);
+            }
+        })
+    }
 
+    /**
+     * Promise A+规范的then
+     * @param {*} onFulfilled 
+     * @param {*} onRejected 
+     * @returns 
+     */
+    then(onFulfilled, onRejected) {
+        return new myPromise((resolve, reject) => {
+            this._pushHandler(onFulfilled, FULFILLED, resolve, reject);
+            this._pushHandler(onRejected, REJECTED, resolve, reject);
+            this._runHandlers();
+        });
+    }
+
+    /**
+     * 仅处理失败的场景
+     * @param {*} onRejected 
+     * @returns 
+     */
+    catch(onRejected) {
+        return this.then(null, onRejected);
+    }
+
+    /**
+     * 无论成功还是失败都会回调
+     * @param {*} onSettled 
+     */
+    finally(onSettled) {
+        return this.then(
+            (data) => {
+                onSettled();
+                return data;
+            },
+            (reason) => {
+                onSettled();
+                return reason;
+            }
+        )
+    }
+    /**
+     * 更改任务状态
+     * @param {*} newState 
+     * @param {*} value 
+     * @returns 
+     */
+    _changeState(newState, value) {
+        if(this._state !== PENDING) {
+            // 状态不可逆，只支持pending->fulfilled || rejected
+            return;
+        }
+        this._state = newState;
+        this._value = value;
+        this._runHandlers(); // 状态变化，执行队列
+    }
+
+    /**
+     * 标记当前任务完成
+     * @param {*} data 任务完成的相关数据
+     */
+    _resolve(data) {
+        this._changeState(FULFILLED, data);
+    }
+
+    /**
+     * 标记当前任务失败
+     * @param {*} reason 任务失败的相关数据 
+     */
+    _reject(reason) {
+        this._changeState(REJECTED, reason);
     }
 }
+const promise = new myPromise((resolve, reject) => {
+    resolve(1);
+});
+promise.then((data) => {
+    console.log(data);
+})
