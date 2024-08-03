@@ -12,7 +12,7 @@ function _timerSetInterval(fn, delay, ...args) {
     let timer = null;
 
     const task = () => {
-        current + delay;
+        current += delay;
         timer = setTimeout(() => {
             fn.apply(this, args);
             task();
