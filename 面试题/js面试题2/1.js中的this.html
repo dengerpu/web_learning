@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1.全局环境下。this指向window
+        // console.log(this); // window
+
+        // "use strict";
+        // console.log(this); // window
+
+        // 2. 函数内部
+        function fun1() {
+            console.log(this); // window
+        }
+        fun1();
+
+        function fun2() {
+            "use strict";
+            console.log(this); // undefined
+        }
+        fun2();
+
+        // const student = {
+        //     name: 'lilei',
+        //     sayHi: function () {
+        //         console.log(this) // student
+        //         // 箭头会从自己作用域链的上一层继承this
+        //         const inner = () => {
+        //             console.log('inner-调用了')
+        //             console.log(this) // student
+        //         }
+        //         inner()
+        //     }
+        // }
+        // student.sayHi()
+
+        const student = {
+            name: 'lilei',
+            sayHi:  () => {
+                console.log(this) // window
+                // 箭头会从自己作用域链的上一层继承this
+                const inner = () => {
+                    console.log('inner-调用了')
+                    console.log(this) // window
+                }
+                inner()
+            }
+        }
+        student.sayHi()
+    </script>
+</body>
+
+</html>
