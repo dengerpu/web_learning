@@ -1,0 +1,3 @@
+function extendsString(str) {
+    
+}
