@@ -10,7 +10,7 @@ function getStringNumber(str) {
     }
     return res;
 }
-console.log(getStringNumber("hello world")); // { l: 3, o: 2 }
+console.log(getStringNumber("hello world"));
 
 // 或者直接使用集合
 function getStringNumber2(str) {
@@ -18,8 +18,22 @@ function getStringNumber2(str) {
     const res = {};
     for(let i = 0; i < len; i++) {
         let c = str.charAt(i);
-        // if()
+        if(res[c]) {
+            res[c] = res[c] ++;
+        } else {
+            res[c] = 1;
+        }
     }
     return res;
 }
-console.log(getStringNumber("hello world")); // { l: 3, o: 2 }
+console.log(getStringNumber2("hello world"));
+// 使用数组的reduce方法
+function getStringNumber3(str) {
+    let arr = str.split("");
+    return arr.reduce((prev, curr) => {
+        let c = curr;
+        prev[c] ? prev[c]+= 1 : prev[c] = 1 
+        return prev;
+    }, {})
+}
+console.log(getStringNumber3("hello world"));
