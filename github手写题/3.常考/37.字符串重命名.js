@@ -15,7 +15,7 @@ function rename(arr) {
             arr[j] = str + index;
          }
       }
-      return arr;
    }
+   return arr;
 }
-console.log(rename(["ab","c","ab","c","a","d"]));
+console.log(rename(["ab","c","ab","c","a","d", "a"]));
