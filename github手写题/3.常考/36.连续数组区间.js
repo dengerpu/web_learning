@@ -17,3 +17,37 @@ function summaryRange(arr) {
     return res;
 }
 console.log(summaryRange([0,1,2,4,5,7,13,15,16]))
+
+// 记录前面的值，只遍历一次
+function summaryRange2(arr) {
+    console.log('执行了');
+    let res = [];
+    let prev = arr[0];
+    let start = arr[0];
+    let key = false; // 是否连续
+    for(let i = 1; i < arr.length; i++) {
+        if(arr[i] === prev + 1) {
+            key = true;
+        } else {
+            if(key === true) {
+                res.push(start + "->" + prev);
+            } else {
+                res.push(start + "");
+            }
+            start = arr[i];
+            key = false;
+        }
+        prev = arr[i];
+
+        // 处理最后一个元素
+        if(i === arr.length - 1) {
+            if(key === true) {
+                res.push(start + "->" + prev);
+            } else {
+                res.push(start + "");
+            }
+        }
+    }
+    return res;
+}
+console.log(summaryRange2([0,1,2,4,5,7,13,15,16]))
