@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>九宫格拼图游戏</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .puzzle {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 5px;
+        }
+
+        .tile {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ddd;
+            border: 1px solid #bbb;
+            font-size: 24px;
+            cursor: grab;
+            user-select: none;
+        }
+
+        .tile.dragging {
+            opacity: 0.5;
+        }
+
+        #message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="puzzle">
+        <div class="tile" draggable="true" data-id="1">1</div>
+        <div class="tile" draggable="true" data-id="2">2</div>
+        <div class="tile" draggable="true" data-id="3">3</div>
+        <div class="tile" draggable="true" data-id="4">4</div>
+        <div class="tile" draggable="true" data-id="5">5</div>
+        <div class="tile" draggable="true" data-id="6">6</div>
+        <div class="tile" draggable="true" data-id="7">7</div>
+        <div class="tile" draggable="true" data-id="8">8</div>
+        <div class="tile" draggable="true" data-id="9">9</div>
+    </div>
+    <div id="message"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tiles = Array.from(document.querySelectorAll('.tile'));
+            let draggedTile = null;
+
+            function shuffleTiles() {
+                const shuffledIds = Array.from(Array(9).keys()).map(i => i + 1).sort(() => Math.random() - 0.5);
+                tiles.forEach((tile, index) => {
+                    tile.textContent = shuffledIds[index];
+                    tile.dataset.id = shuffledIds[index];
+                });
+            }
+
+            function checkCompletion() {
+                const currentOrder = tiles.map(tile => tile.dataset.id).join('');
+                if (currentOrder === '123456789') {
+                    document.getElementById('message').textContent = '拼图完成!';
+                }
+            }
+
+            tiles.forEach(tile => {
+                tile.addEventListener('dragstart', (e) => {
+                    draggedTile = e.target;
+                    e.target.classList.add('dragging');
+                });
+
+                tile.addEventListener('dragend', (e) => {
+                    e.target.classList.remove('dragging');
+                    draggedTile = null;
+                    checkCompletion();
+                });
+
+                tile.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                });
+
+                tile.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    if (draggedTile && draggedTile !== e.target) {
+                        const temp = e.target.textContent;
+                        e.target.textContent = draggedTile.textContent;
+                        draggedTile.textContent = temp;
+
+                        const tempId = e.target.dataset.id;
+                        e.target.dataset.id = draggedTile.dataset.id;
+                        draggedTile.dataset.id = tempId;
+                    }
+                });
+            });
+
+            shuffleTiles(); // Shuffle tiles when page loads
+        });
+
+    </script>
+</body>
+
+</html>
