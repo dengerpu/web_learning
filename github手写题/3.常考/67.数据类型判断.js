@@ -72,4 +72,5 @@ function getType(value) {
 // 利用Object.prototype.toString.call()
 function getType2(value) {
     let type = Object.prototype.toString.call(value).slice(8, -1).toLowerCase();
+    return type;
 }
