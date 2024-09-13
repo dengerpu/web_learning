@@ -1,3 +1,8 @@
+// 类数组通常有以下几个特点：
+// 1.具有 length 属性
+// 2.按索引方式存储数据
+// 3.不具有数组的 push、pop 等数组方法
+
 let arguments = {0: 'a', 1: 'b', length: 2};
 // 1.Array.from() 方法
 let arr = Array.from(arguments);
