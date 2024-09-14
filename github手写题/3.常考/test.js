@@ -1,38 +1,35 @@
-function isApproximatePeriodicString(s) {
-    function areSimilar(sub1, sub2) {
-      let diffCount = 0;
-      for (let i = 0; i < sub1.length; i++) {
-        if (sub1[i] !== sub2[i]) {
-          diffCount++;
-          if (diffCount > 1) return false;
-        }
+function minimizeCost(n, m, prices, coupons) {
+  prices.sort((a, b) => a - b);
+  coupons.sort((a, b) => b - a);
+  let totalCost = 0;
+  let used = Array(n).fill(false);
+  for (let i = 0; i < m; i++) {
+      let count = coupons[i];
+      let temp = [];
+      for (let j = 0; j < n && count > 0; j++) {
+          if (!used[j]) {
+              temp.push(prices[j]);
+              used[j] = true;
+              count--;
+          }
       }
-      return true;
-    }
-  
-    const n = s.length;
-    if (n < 6 || n % 3 !== 0) return false;
-  
-    const substrings = [];
-    for (let i = 0; i < n; i += 3) {
-      substrings.push(s.substring(i, i + 3));
-    }
-  
-    if (substrings.length <= 1) return false;
-  
-    for (let i = 0; i < substrings.length; i++) {
-      for (let j = i + 1; j < substrings.length; j++) {
-        if (!areSimilar(substrings[i], substrings[j])) {
-          return false;
-        }
+      if (temp.length > 0) {
+          temp.sort((a, b) => a - b);
+          temp.shift();
+          totalCost += temp.reduce((acc, price) => acc + price, 0);
       }
-    }
-  
-    return true;
   }
-  
-  // Example usage:
-  console.log(isApproximatePeriodicString("ABCABDABDABE")); // true
-  console.log(isApproximatePeriodicString("ABCABBACD"));   // false
-  console.log(isApproximatePeriodicString("AAAAAA"));       // true
-  
+  for (let i = 0; i < n; i++) {
+      if (!used[i]) {
+          totalCost += prices[i];
+      }
+  }
+  return totalCost;
+}
+
+const n = 5;
+const m = 2;
+const prices = [1, 2, 5, 4, 5];
+const coupons = [3, 2];
+
+console.log(minimizeCost(n, m, prices, coupons)); // Output: 10
