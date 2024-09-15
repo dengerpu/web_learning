@@ -11,9 +11,14 @@
  * @returns 
  */
 function check(obj1, obj2) {
+    console.log('比较的两个数', obj1, obj2);
     // 内存地址相同直接为true
     if(obj1 === obj2) {
         return true;
+    }
+    // 类型不同直接返回false，只对对象进行深度比较
+    if(typeof obj1 !== 'object' || typeof obj2 !== 'object' || obj1 === null || obj2 === null) {
+        return false;
     }
     let obj1Keys = Object.keys(obj1);
     let obj2Keys = Object.keys(obj2);
@@ -21,12 +26,12 @@ function check(obj1, obj2) {
     if(obj1Keys.length !== obj2Keys.length) {
         return false;
     }
-    for(let key in obj1) {
-        if(typeof obj1[key] === 'object' || typeof obj2[key] === 'object') {
-            if(!check(obj1[key], obj2[key])) {
-                return false;
-            }
-        } else if (obj1Keys[key] !== obj2Keys[key]) {
+    for(let key of obj1Keys) {
+        // 判断obj2是否包含key，如果不包含直接返回false
+        if(!obj2Keys.includes(key)) {
+            return false;
+        }
+        if(!check(obj1[key], obj2[key])) {
             return false;
         }
     }
@@ -39,7 +44,6 @@ function check(obj1, obj2) {
  * @returns 
  */
 Array.prototype.includesObj = function(itemObj) {
-    console.log(this);
     let flag = false;
     for(let i = 0; i < this.length; i++) {
         if(check(this[i], itemObj)) {
@@ -63,6 +67,6 @@ function unique(arr) {
 let a = { a: 1 };
 let b = { a: 1 };
 let c = { b: 2 };
-let nums = [a, b, c];
+let nums = [a, b, c, 1, 2, 1];
 
 console.log(unique(nums));
