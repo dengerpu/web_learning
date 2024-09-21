@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .outer {
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+        .inner {
+            width: 100px;
+            height: 100px;
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="inner"></div>
+    </div>
+    <script>
+            const outer = document.querySelector('.outer');
+            const inner = document.querySelector('.inner');
+            const observer = new MutationObserver(() => {
+                    console.log('mutate');
+                });
+            function handleClick() {
+                console.log('clikck');
+                observer.observe(outer, { attributes: true });
+                Promise.resolve().then(() => {
+                    console.log('promise');
+                });
+                setTimeout(() => {
+                    console.log('timeout');
+                }, 0);
+                outer.setAttribute('data-random', Math.random());
+            }
+            outer.addEventListener('click', handleClick);
+            inner.addEventListener('click', handleClick);
+    </script>
+</body>
+</html>
