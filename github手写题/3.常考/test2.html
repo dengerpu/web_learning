@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main .img-panel {
+            background-image: url("https://upload.wikimedia.org/wikipedia/zh/thumb/a/a6/China_Merchants_Bank_logo.svg/330px-China_Merchants_Bank_logo.svg.png");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            width: 320px;
+            height: 80px;
+            position: relative;
+        }
+        .magnifier-main .magnifier-img-panel {
+            background-image: url("https://upload.wikimedia.org/wikipedia/zh/thumb/a/a6/China_Merchants_Bank_logo.svg/330px-China_Merchants_Bank_logo.svg.png");
+            background-repeat: no-repeat;
+            background-size: 800%;
+            width: 160px;
+            height: 160px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="main" style="width: 320px; height: 80px; border: 1px solid #ccc; position: relative;">
+        <div class="img-panel">
+            <span class="circle"
+                style="width: 40px; height: 40px; border: 1px solid #000; opacity: 0.3; position: absolute; top: 0; left: 0;"
+            >
+            </span>
+        </div>
+    </div>
+    <div class="magnifier-main" style="width: 160px; height: 160px; border: 1px solid #ccc; position: absolute; left: 345px; top: 8px;">
+        <div class="magnifier-img-panel"></div>
+    </div>
+</body>
+<script>
+    window.onload = function () {
+    var imgPanel = document.querySelector('.img-panel');
+    var circle = document.querySelector('.circle');
+    var magnifierMain = document.querySelector('.magnifier-main');
+    var magnImgPanel = document.querySelector('.magnifier-img-panel');
+
+    imgPanel.onmousemove = function (event) {
+        var left = event.clientX - circle.clientWidth / 2 - imgPanel.offsetParent.offsetLeft;
+        var top = event.clientY - circle.clientHeight / 2 - imgPanel.offsetParent.offsetTop;
+
+        if (left < 0) {
+            left = 0;
+        } else if (left > imgPanel.clientWidth - circle.clientWidth) {
+            left = imgPanel.clientWidth - circle.clientWidth;
+        }
+
+        if (top < 0) {
+            top = 0;
+        } else if (top > imgPanel.clientHeight - circle.clientHeight) {
+            top = imgPanel.clientHeight - circle.clientHeight;
+        }
+
+        circle.style.left = left + 'px';
+        circle.style.top = top + 'px';
+
+        console.log(left, top);
+        
+                // 分别设置水平和垂直背景位置
+        // magnImgPanel.style.backgroundPositionX = `-${left * 4}px`;
+        // magnImgPanel.style.backgroundPositionY = `-${top * 4}px`;
+
+        magnImgPanel.style.backgroundPosition = `-${left * 4}px -${top * 4}px`;
+    };
+};
+</script>
+</html>
